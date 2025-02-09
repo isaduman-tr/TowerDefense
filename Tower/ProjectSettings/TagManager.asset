@@ -6,6 +6,7 @@ TagManager:
   tags:
   - point
   - enemy
+  - kale
   layers:
   - Default
   - TransparentFX

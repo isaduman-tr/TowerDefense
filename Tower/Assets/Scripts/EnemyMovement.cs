@@ -2,6 +2,7 @@
 // This was created with assistance from Muse, a Unity Artificial Intelligence product
 
 using UnityEngine;
+using System.Collections;
 
 public class EnemyMovement : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class EnemyMovement : MonoBehaviour
     public float speed = 5f;
     private int currentWaypointIndex = 0;
     private bool isStopped = false;
+    private float stopTimer = 0f;
+    public float stopDuration = 2f; // 2 saniye
 
     void Update()
     {
@@ -23,7 +26,8 @@ public class EnemyMovement : MonoBehaviour
         {
             if (targetWaypoint.CompareTag("point"))
             {
-                isStopped = true; // Düþmaný durdurur
+                isStopped = true;
+                StartCoroutine(DestroyKaleAfterDelay(stopDuration));
             }
             else
             {
@@ -32,9 +36,23 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
+    private IEnumerator DestroyKaleAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        GameObject[] kaleObjects = GameObject.FindGameObjectsWithTag("kale");
+        foreach (GameObject kale in kaleObjects)
+        {
+            Destroy(kale);
+        }
+        // Oyun durdurma
+        Time.timeScale = 0; // Oyun zamanýný durdurur
+    }
+
     public void ResetWaypointIndex()
     {
-        currentWaypointIndex = 0; // Ýndeksi sýfýrlar
-        isStopped = false; // Hareketi yeniden baþlatýr
+        currentWaypointIndex = 0;
+        isStopped = false;
+        stopTimer = 0f;
     }
 }

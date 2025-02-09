@@ -159,6 +159,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 203084088}
+  - component: {fileID: 203084089}
   m_Layer: 0
   m_Name: WayPoint (3)
   m_TagString: point
@@ -181,6 +182,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &203084089
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 203084087}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4.857376, y: 5.1827407, z: 5.0024796}
+  m_Center: {x: -1.928688, y: 2.0913703, z: -0.13686371}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -792,8 +814,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 2.332691
-  m_Center: {x: 0.44573918, y: 0, z: -0.86009884}
+  m_Radius: 2.2502618
+  m_Center: {x: -2.3543847, y: -0.83632976, z: 0.053536214}
 --- !u!114 &1038249437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -870,13 +892,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1038249435}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 36.12, y: 2.09, z: 6.45}
-  m_LocalScale: {x: 1.8627, y: 4.110606, z: 1.8627}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.023999786, y: 0.91800004, z: -0.036000002}
+  m_LocalScale: {x: 0.37254, y: 0.82212126, z: 0.37254}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2140812957}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1353664909}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1172735458 stripped
 GameObject:
@@ -902,6 +924,7 @@ MonoBehaviour:
   - {fileID: 203084088}
   - {fileID: 1353664909}
   speed: 5
+  stopDuration: 2
 --- !u!114 &1172735465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1053,7 +1076,7 @@ GameObject:
   - component: {fileID: 1353664906}
   m_Layer: 0
   m_Name: kale
-  m_TagString: Untagged
+  m_TagString: kale
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1144,7 +1167,8 @@ Transform:
   m_LocalPosition: {x: 44.2, y: 2.67, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1038249440}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1614469923
@@ -1374,4 +1398,3 @@ SceneRoots:
   - {fileID: 1353664909}
   - {fileID: 423101373}
   - {fileID: 1228928168}
-  - {fileID: 1038249440}
