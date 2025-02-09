@@ -8,10 +8,11 @@ public class EnemyMovement : MonoBehaviour
     public Transform[] waypoints;
     public float speed = 5f;
     private int currentWaypointIndex = 0;
+    private bool isStopped = false;
 
     void Update()
     {
-        if (waypoints.Length == 0)
+        if (waypoints.Length == 0 || isStopped)
             return;
 
         Transform targetWaypoint = waypoints[currentWaypointIndex];
@@ -20,12 +21,20 @@ public class EnemyMovement : MonoBehaviour
 
         if (Vector3.Distance(transform.position, targetWaypoint.position) < 0.1f)
         {
-            currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length;
+            if (targetWaypoint.CompareTag("point"))
+            {
+                isStopped = true; // Düþmaný durdurur
+            }
+            else
+            {
+                currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length;
+            }
         }
     }
 
     public void ResetWaypointIndex()
     {
         currentWaypointIndex = 0; // Ýndeksi sýfýrlar
+        isStopped = false; // Hareketi yeniden baþlatýr
     }
 }

@@ -6,7 +6,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     private Vector3 startPosition;
-    private int health = 3;
+    private int health = 10;
     private EnemyMovement movementScript;
 
     void Start()
@@ -27,7 +27,7 @@ public class Enemy : MonoBehaviour
     void ReturnToStart()
     {
         transform.position = startPosition;
-        health = 3; // Saðlýðý sýfýrlar
+        health = 10; // Saðlýðý sýfýrlar
         if (movementScript != null)
         {
             movementScript.ResetWaypointIndex(); // Waypoint indeksini sýfýrlar
