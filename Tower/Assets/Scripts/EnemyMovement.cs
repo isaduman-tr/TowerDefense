@@ -6,7 +6,7 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
     public Transform[] waypoints;
-    public float speed = 5f;
+    public float speed = 3f;
     private int currentWaypointIndex = 0;
     private bool isStopped = false;
 
