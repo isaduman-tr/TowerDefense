@@ -7,10 +7,12 @@ public class Enemy : MonoBehaviour
 {
     private Vector3 startPosition;
     private int health = 3;
+    private EnemyMovement movementScript;
 
     void Start()
     {
         startPosition = transform.position;
+        movementScript = GetComponent<EnemyMovement>(); // Movement scriptini elde et
     }
 
     public void TakeDamage()
@@ -25,6 +27,10 @@ public class Enemy : MonoBehaviour
     void ReturnToStart()
     {
         transform.position = startPosition;
-        health = 3; // Saðlýðý sýfýrlar, oyun yeniden baþlar
+        health = 3; // Saðlýðý sýfýrlar
+        if (movementScript != null)
+        {
+            movementScript.ResetWaypointIndex(); // Waypoint indeksini sýfýrlar
+        }
     }
 }
