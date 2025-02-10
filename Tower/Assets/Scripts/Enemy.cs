@@ -4,7 +4,6 @@ public class Enemy : MonoBehaviour
 {
     private Vector3 startPosition; // Baþlangýç pozisyonunu saklar
     public int health = 10; // Düþmanýn saðlýðýný temsil eder
-    public int enemy2health = 20; // 2. seviye Düþmanýn saðlýðýný temsil eder
     private EnemyMovement movementScript; // Hareket scripti referansý
 
     // Yeni düþman prefab'i için GameObject referansý
@@ -27,7 +26,7 @@ public class Enemy : MonoBehaviour
             GameObject newEnemy = Instantiate(enemyPrefab, spawnPoint, Quaternion.identity);
 
             // Yeni düþmanýn saðlýk deðerini Inspector'da ayarladýðýnýz public 'health' deðiþkenine göre ayarlayýn
-            newEnemy.GetComponent<Enemy>().health = enemy2health;
+            newEnemy.GetComponent<Enemy>().health = 10;
 
             Destroy(gameObject); // Mevcut düþmaný yok eder
             ReturnToStart(); // Baþlangýç pozisyonuna döner
