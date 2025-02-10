@@ -1,44 +1,48 @@
+// 10.02.2025 AI-Tag
+// This was created with assistance from Muse, a Unity Artificial Intelligence product
+
 using UnityEngine;
+
 public class Enemy : MonoBehaviour
 {
-    
-    private Vector3 startPosition; // Düþmanýn baþlangýç pozisyonunu saklamak için bir Vector3 deðiþkeni tanýmlanýr
+    private Vector3 startPosition; // Baþlangýç pozisyonunu saklar
+    public int health = 10; // Düþmanýn saðlýðýný temsil eder
+    private EnemyMovement movementScript; // Hareket scripti referansý
 
-    public int health = 10;// Düþmanýn saðlýðýný temsil eden bir tam sayý deðiþkeni, baþlangýç deðeri 10
+    // Yeni düþman prefab'i için GameObject referansý
+    public GameObject enemyPrefab;
 
-    private EnemyMovement movementScript;// EnemyMovement türünde bir referans saklamak için bir deðiþken tanýmlanýr
+    // Yeni düþmanýn doðacaðý pozisyon
+    public Vector3 spawnPoint;
 
     void Start()
     {
-        
-        startPosition = transform.position;// Objenin baþlangýç pozisyonu kaydedilir
-
-        
-        movementScript = GetComponent<EnemyMovement>(); // Movement scriptini elde et
+        startPosition = transform.position; // Baþlangýç pozisyonunu kaydeder
+        movementScript = GetComponent<EnemyMovement>(); // Hareket scriptini alýr
     }
 
-    public void TakeDamage()// Düþman hasar aldýðýnda çaðrýlan bir fonksiyon
+    public void TakeDamage() // Düþman hasar aldýðýnda çaðrýlýr
     {
-        
-        health--;// Saðlýk deðeri bir azaltýlýr
-        // Saðlýk sýfýr veya daha düþükse, düþmaný yok eder
-        if (health <= 0)
+        health--; // Saðlýðý bir azaltýr
+        if (health <= 0) // Saðlýk sýfýr veya daha az ise
         {
-            Destroy(gameObject);
+            GameObject newEnemy = Instantiate(enemyPrefab, spawnPoint, Quaternion.identity);
+
+            // Yeni düþmanýn saðlýk deðerini ayarlayýn
+            newEnemy.GetComponent<Enemy>().health = 10; // veya baþlangýç için istediðiniz deðer
+
+
+            Destroy(gameObject); // Mevcut düþmaný yok eder
+            ReturnToStart(); // Baþlangýç pozisyonuna döner
         }
     }
 
-    // Düþmanýn baþlangýç pozisyonuna dönmesini saðlayan bir fonksiyon þimdilik deaktif
-    void ReturnToStart()
+    void ReturnToStart() // Baþlangýç pozisyonuna döner
     {
-        // Düþmanýn pozisyonu baþlangýç pozisyonuna ayarlanýr
-        transform.position = startPosition;
-        // Saðlýk deðeri varsayýlan deðere sýfýrlanýr
+        transform.position = startPosition; // Pozisyonu baþlangýca ayarlar
         health = 10; // Saðlýðý sýfýrlar
-        // Eðer hareket scripti mevcutsa
-        if (movementScript != null)
+        if (movementScript != null) // Eðer hareket scripti varsa
         {
-            // Waypoint indeksini sýfýrlar
             movementScript.ResetWaypointIndex(); // Waypoint indeksini sýfýrlar
         }
     }
