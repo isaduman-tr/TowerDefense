@@ -64,5 +64,8 @@ public class TowerAttack : MonoBehaviour
         GameObject shot = Instantiate(shotPrefab, firePoint.position, firePoint.rotation);
         // Oluþturulan mermiye hedef düþman bilgisi iletilir
         shot.GetComponent<Shot>().Initialize(enemy);
+
+        // Düþman vurulduðunda sayacý artýr
+        enemyHitCount++;
     }
 }

@@ -156,8 +156,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  speed: 5
+  speed: 7
   stopDuration: 2
+  damageAmount: 10
 --- !u!114 &906635857478482604
 MonoBehaviour:
   m_ObjectHideFlags: 0

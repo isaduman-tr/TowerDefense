@@ -1037,6 +1037,7 @@ GameObject:
   - component: {fileID: 1353664908}
   - component: {fileID: 1353664907}
   - component: {fileID: 1353664906}
+  - component: {fileID: 1353664910}
   m_Layer: 0
   m_Name: kale
   m_TagString: kale
@@ -1134,6 +1135,19 @@ Transform:
   - {fileID: 1038249440}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1353664910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1353664905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa0967ae10e64e64086cc902fc930409, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
 --- !u!1 &1614469923
 GameObject:
   m_ObjectHideFlags: 0
@@ -1266,6 +1280,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 906635857478482604, guid: 82d3ee8ecd36a504d8fd0813c212564f, type: 3}
+      propertyPath: health
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 1271490173133640732, guid: 82d3ee8ecd36a504d8fd0813c212564f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1309,6 +1327,14 @@ PrefabInstance:
     - target: {fileID: 2624288321376963305, guid: 82d3ee8ecd36a504d8fd0813c212564f, type: 3}
       propertyPath: m_Name
       value: enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 6620678826037952196, guid: 82d3ee8ecd36a504d8fd0813c212564f, type: 3}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6620678826037952196, guid: 82d3ee8ecd36a504d8fd0813c212564f, type: 3}
+      propertyPath: stopDuration
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6620678826037952196, guid: 82d3ee8ecd36a504d8fd0813c212564f, type: 3}
       propertyPath: 'waypoints.Array.data[0]'
