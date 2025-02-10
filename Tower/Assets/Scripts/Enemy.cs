@@ -1,32 +1,28 @@
 using UnityEngine;
 
-// Enemy adýnda bir sýnýf tanýmlanýr ve bu sýnýf MonoBehaviour'dan türetilmiþtir
+
 public class Enemy : MonoBehaviour
 {
-    // Düþmanýn baþlangýç pozisyonunu saklamak için bir Vector3 deðiþkeni tanýmlanýr
-    private Vector3 startPosition;
+    
+    private Vector3 startPosition; // Düþmanýn baþlangýç pozisyonunu saklamak için bir Vector3 deðiþkeni tanýmlanýr
 
-    // Düþmanýn saðlýðýný temsil eden bir tam sayý deðiþkeni, baþlangýç deðeri 10
-    public int health = 10;
+    public int health = 10;// Düþmanýn saðlýðýný temsil eden bir tam sayý deðiþkeni, baþlangýç deðeri 10
 
-    // EnemyMovement türünde bir referans saklamak için bir deðiþken tanýmlanýr
-    private EnemyMovement movementScript;
+    private EnemyMovement movementScript;// EnemyMovement türünde bir referans saklamak için bir deðiþken tanýmlanýr
 
-    // Unity tarafýndan çaðrýlan ve obje baþlatýldýðýnda çalýþan bir fonksiyon
     void Start()
     {
-        // Objenin baþlangýç pozisyonu kaydedilir
-        startPosition = transform.position;
+        
+        startPosition = transform.position;// Objenin baþlangýç pozisyonu kaydedilir
 
-        // Oyun objesi üzerinde bulunan EnemyMovement scriptine eriþim saðlanýr
+        
         movementScript = GetComponent<EnemyMovement>(); // Movement scriptini elde et
     }
 
-    // Düþman hasar aldýðýnda çaðrýlan bir fonksiyon
-    public void TakeDamage()
+    public void TakeDamage()// Düþman hasar aldýðýnda çaðrýlan bir fonksiyon
     {
-        // Saðlýk deðeri bir azaltýlýr
-        health--;
+        
+        health--;// Saðlýk deðeri bir azaltýlýr
         // Saðlýk sýfýr veya daha düþükse, düþmaný yok eder
         if (health <= 0)
         {
@@ -34,7 +30,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    // Düþmanýn baþlangýç pozisyonuna dönmesini saðlayan bir fonksiyon
+    // Düþmanýn baþlangýç pozisyonuna dönmesini saðlayan bir fonksiyon þimdilik deaktif
     void ReturnToStart()
     {
         // Düþmanýn pozisyonu baþlangýç pozisyonuna ayarlanýr

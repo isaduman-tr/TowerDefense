@@ -1,22 +1,21 @@
 using UnityEngine;
 
-// TowerAttack adýnda bir sýnýf tanýmlanýr ve bu sýnýf MonoBehaviour'dan türetilmiþtir
 public class TowerAttack : MonoBehaviour
 {
-    // Atýlan merminin prefab'ini temsil eden bir GameObject
-    public GameObject shotPrefab;
-    // Merminin ateþleneceði noktayý temsil eden bir Transform
-    public Transform firePoint;
-    // Saldýrýlarýn arasýndaki süreyi temsil eden bir kayan nokta deðiþkeni
-    public float attackInterval = 1f;
-    // Saldýrý zamanlayýcýsýný saklayan bir kayan nokta deðiþkeni
-    private float attackTimer;
-    // Vurulan düþman sayýsýný sayan bir tam sayý deðiþkeni
-    private int enemyHitCount = 0;
-    // Hedef düþmaný saklayan bir GameObject deðiþkeni
-    private GameObject enemy;
+    public GameObject shotPrefab;        // Atýlan merminin prefab'ini temsil eden bir GameObject
 
-    // Diðer bir obje bu objenin trigger alanýna girdiðinde çaðrýlan fonksiyon
+    
+    public Transform firePoint;          // Merminin ateþleneceði noktayý temsil eden bir Transform
+    public float attackInterval = 1f;    // Saldýrýlarýn arasýndaki süreyi temsil eden bir kayan nokta deðiþkeni
+
+    
+    private float attackTimer;// Saldýrý zamanlayýcýsýný saklayan bir kayan nokta deðiþkeni
+    
+    private int enemyHitCount = 0;// Vurulan düþman sayýsýný sayan bir tam sayý deðiþkeni
+    
+    private GameObject enemy;// Hedef düþmaný saklayan bir GameObject deðiþkeni
+
+    
     void OnTriggerEnter(Collider other)
     {
         // Eðer obje "enemy" etiketi taþýyorsa
@@ -29,7 +28,6 @@ public class TowerAttack : MonoBehaviour
         }
     }
 
-    // Diðer bir obje bu objenin trigger alanýnda kaldýðýnda her karede bir kez çaðrýlan fonksiyon
     void OnTriggerStay(Collider other)
     {
         // Eðer bir hedef düþman varsa ve bu obje hedef düþmansa

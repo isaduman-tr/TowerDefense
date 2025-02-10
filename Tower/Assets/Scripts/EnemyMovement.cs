@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-// EnemyMovement adýnda bir sýnýf tanýmlanýr ve bu sýnýf MonoBehaviour'dan türetilmiþtir
+
 public class EnemyMovement : MonoBehaviour
 {
     // Düþmanýn izleyeceði yol noktalarýný tutan bir dizi
