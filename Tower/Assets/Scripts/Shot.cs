@@ -1,23 +1,19 @@
-using UnityEngine;
+using UnityEngine; // Unity motorunun ana sýnýflarýný kullanabilmek için gerekli kütüphaneyi yükler
 
-
-public class Shot : MonoBehaviour
+public class Shot : MonoBehaviour // MonoBehaviour sýnýfýndan türetilen bir Shot sýnýfý tanýmlar
 {
-    
-    public float speed = 5f;     // Merminin hýzýný temsil eden bir kayan nokta deðiþkeni
-    private GameObject target;    // Hedef objeyi saklamak için bir GameObject referansý
+    public float speed = 5f; // Merminin hýzýný temsil eden bir kayan nokta deðiþkeni
+    private GameObject target; // Hedef objeyi saklamak için bir GameObject referansý
 
-
-    
-    public void Initialize(GameObject target)// Merminin hedefine atanmasýný saðlayan fonksiyon
+    // Merminin hedefine atanmasýný saðlayan fonksiyon
+    public void Initialize(GameObject target)
     {
-        this.target = target;// Hedef GameObject atanýr
+        this.target = target; // Hedef GameObject atanýr
     }
 
-    void Update()
+    void Update() // Her karede çaðrýlan Unity fonksiyonu
     {
-        if (target != null)        // Eðer bir hedef varsa
-
+        if (target != null) // Eðer bir hedef varsa
         {
             // Merminin pozisyonunu hedefe doðru hareket ettirir
             transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
@@ -31,8 +27,7 @@ public class Shot : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-        // Eðer hedef yoksa
-        else
+        else // Eðer hedef yoksa
         {
             // Mermiyi sahneden siler
             Destroy(gameObject);

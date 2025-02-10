@@ -1,16 +1,16 @@
-using UnityEngine;
+using UnityEngine; // Unity motorunun ana sýnýflarýný kullanabilmek için gerekli olan kütüphaneyi yükler
 
-public class KaleHealth : MonoBehaviour
+public class KaleHealth : MonoBehaviour // MonoBehaviour sýnýfýndan türetilen bir KaleHealth sýnýfý tanýmlar
 {
-    public int health = 300; // Kaleye baþlangýç caný verilir
+    public int health = 300; // Kaleye baþlangýç saðlýðý 300 olarak atanýr
 
     // Kale hasar aldýðýnda bu fonksiyon çaðrýlýr
-    public void TakeDamage(int amount)
+    public void TakeDamage(int amount) // Hasar miktarýný belirten bir parametre alýr
     {
-        health -= amount;
-        if (health <= 0)
+        health -= amount; // Kale saðlýðýný hasar miktarý kadar azaltýr
+        if (health <= 0) // Kale saðlýðý sýfýr veya daha düþükse
         {
-            Destroy(gameObject); // Can sýfýr veya altýna inerse kale yok edilir
+            Destroy(gameObject); // Kale oyun nesnesini yok eder
         }
     }
 }

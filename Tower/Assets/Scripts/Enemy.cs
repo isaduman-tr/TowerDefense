@@ -1,22 +1,19 @@
-// 10.02.2025 AI-Tag
-// This was created with assistance from Muse, a Unity Artificial Intelligence product
+using UnityEngine; // Unity motorunun ana sýnýflarýný kullanabilmek için gerekli olan kütüphaneyi yükler
+using System; // Sistem sýnýflarýný kullanmak için gerekli kütüphaneyi yükler
 
-using UnityEngine;
-using System;
-
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour // MonoBehaviour sýnýfýndan türetilen bir Enemy sýnýfý tanýmlar
 {
-    public event Action<GameObject> OnDeath;
+    public event Action<GameObject> OnDeath; // 'Enemy' öldüðünde tetiklenecek bir olay (event) tanýmlar
 
-    public int health = 10;
+    public int health = 10; // Düþmanýn baþlangýç saðlýðýný 10 olarak ayarlar
 
-    public void TakeDamage()
+    public void TakeDamage() // Düþmanýn hasar almasý için bir metod tanýmlar
     {
-        health--;
-        if (health <= 0)
+        health--; // Saðlýk deðerini bir azaltýr
+        if (health <= 0) // Saðlýk deðeri 0 veya daha düþükse
         {
-            OnDeath?.Invoke(gameObject);
-            Destroy(gameObject);
+            OnDeath?.Invoke(gameObject); // OnDeath olayý varsa tetikler ve gameObject (düþmaný) olayla birlikte gönderir
+            Destroy(gameObject); // Düþman oyun nesnesini yok eder
         }
     }
 }

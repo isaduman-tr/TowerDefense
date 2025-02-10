@@ -1,39 +1,37 @@
-// 10.02.2025 AI-Tag
-// This was created with assistance from Muse, a Unity Artificial Intelligence product
-
 using UnityEngine;
 using System.Collections.Generic;
 
+// TowerAttack sýnýfý, Unity'nin MonoBehaviour sýnýfýndan türetilmiþ bir sýnýftýr
 public class TowerAttack : MonoBehaviour
 {
-    public GameObject shotPrefab;
-    public Transform firePoint;
-    public float attackInterval = 1f;
+    public GameObject shotPrefab; // Atýþ için kullanýlacak prefab nesnesi
+    public Transform firePoint; // Atýþýn baþlayacaðý nokta
+    public float attackInterval = 1f; // Atýþlar arasýndaki süre
 
-    private float attackTimer;
-    private List<GameObject> enemiesInRange = new List<GameObject>();
+    private float attackTimer; // Atýþlar arasýndaki zamanlayýcý
+    private List<GameObject> enemiesInRange = new List<GameObject>(); // Menzile giren düþmanlarýn listesi
 
     void Start()
     {
-        attackTimer = attackInterval;
+        attackTimer = attackInterval; // Zamanlayýcýyý baþlangýçta atýþ aralýðýna ayarla
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("enemy"))
+        if (other.CompareTag("enemy")) // Eðer diðer nesne "enemy" etiketiyle etiketlenmiþse
         {
-            enemiesInRange.Add(other.gameObject);
+            enemiesInRange.Add(other.gameObject); // Düþmaný menzil listesine ekle
         }
     }
 
     void Update()
     {
-        if (enemiesInRange.Count > 0)
+        if (enemiesInRange.Count > 0) // Eðer menzilde düþman varsa
         {
-            attackTimer -= Time.deltaTime;
-            if (attackTimer <= 0f)
+            attackTimer -= Time.deltaTime; // Zamanlayýcýyý azalt
+            if (attackTimer <= 0f) // Zamanlayýcý sýfýrýn altýna düþtüyse
             {
-                FireShot();
+                FireShot(); // Atýþ yap
                 attackTimer = attackInterval; // Atýþ yaptýktan sonra zamanlayýcýyý sýfýrla
             }
         }
@@ -41,24 +39,23 @@ public class TowerAttack : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("enemy"))
+        if (other.CompareTag("enemy")) // Eðer diðer nesne menzilden çýkýyorsa
         {
-            enemiesInRange.Remove(other.gameObject);
+            enemiesInRange.Remove(other.gameObject); // Düþmaný menzil listesinden çýkar
         }
     }
 
     void FireShot()
     {
-        // Null referanslarý temizleyin
-        enemiesInRange.RemoveAll(enemy => enemy == null);
+        enemiesInRange.RemoveAll(enemy => enemy == null); // Null referanslarý temizleyin
 
-        if (enemiesInRange.Count > 0)
+        if (enemiesInRange.Count > 0) // Eðer menzilde hala düþman varsa
         {
-            GameObject targetEnemy = enemiesInRange[0];
+            GameObject targetEnemy = enemiesInRange[0]; // Ýlk düþmaný hedef al
             if (targetEnemy != null)
             {
-                GameObject shot = Instantiate(shotPrefab, firePoint.position, firePoint.rotation);
-                shot.GetComponent<Shot>().Initialize(targetEnemy);
+                GameObject shot = Instantiate(shotPrefab, firePoint.position, firePoint.rotation); // Atýþý oluþtur
+                shot.GetComponent<Shot>().Initialize(targetEnemy); // Atýþý hedef düþmana yönlendir
             }
         }
     }
