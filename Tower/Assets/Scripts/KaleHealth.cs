@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class KaleHealth : MonoBehaviour
 {
-    public int health = 100; // Kaleye baþlangýç caný verilir
+    public int health = 300; // Kaleye baþlangýç caný verilir
 
     // Kale hasar aldýðýnda bu fonksiyon çaðrýlýr
     public void TakeDamage(int amount)

@@ -4,7 +4,7 @@ using UnityEngine;
 public class Shot : MonoBehaviour
 {
     
-    public float speed = 10f;     // Merminin hýzýný temsil eden bir kayan nokta deðiþkeni
+    public float speed = 5f;     // Merminin hýzýný temsil eden bir kayan nokta deðiþkeni
     private GameObject target;    // Hedef objeyi saklamak için bir GameObject referansý
 
 

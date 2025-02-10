@@ -1,3 +1,6 @@
+// 10.02.2025 AI-Tag
+// This was created with assistance from Muse, a Unity Artificial Intelligence product
+
 using UnityEngine;
 using System.Collections;
 
@@ -8,7 +11,7 @@ public class EnemyMovement : MonoBehaviour
     private int currentWaypointIndex = 0;
     private bool isStopped = false;
     public float stopDuration = 1f; // 1 saniye bekleyip hasar vermesi
-    public int damageAmount = 10; // Kaleye verilecek hasar miktarý
+    public int damageAmount = 1; // Her enemy'nin kaleye vereceði hasar miktarý
 
     void Update()
     {
@@ -43,10 +46,25 @@ public class EnemyMovement : MonoBehaviour
             KaleHealth kaleHealth = kale.GetComponent<KaleHealth>();
             if (kaleHealth != null)
             {
-                kaleHealth.TakeDamage(damageAmount);
+                int totalDamage = damageAmount * GetEnemiesAtPointCount();
+                kaleHealth.TakeDamage(totalDamage);
             }
         }
         isStopped = false; // Hasar verdikten sonra hareket devam eder
+    }
+
+    private int GetEnemiesAtPointCount()
+    {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, 0.1f);
+        int enemyCount = 0;
+        foreach (Collider collider in colliders)
+        {
+            if (collider.CompareTag("enemy"))
+            {
+                enemyCount++;
+            }
+        }
+        return enemyCount;
     }
 
     public void ResetWaypointIndex()

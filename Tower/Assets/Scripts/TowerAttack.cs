@@ -1,71 +1,65 @@
+// 10.02.2025 AI-Tag
+// This was created with assistance from Muse, a Unity Artificial Intelligence product
+
 using UnityEngine;
+using System.Collections.Generic;
 
 public class TowerAttack : MonoBehaviour
 {
-    public GameObject shotPrefab;        // Atýlan merminin prefab'ini temsil eden bir GameObject
+    public GameObject shotPrefab;
+    public Transform firePoint;
+    public float attackInterval = 1f;
 
-    
-    public Transform firePoint;          // Merminin ateþleneceði noktayý temsil eden bir Transform
-    public float attackInterval = 1f;    // Saldýrýlarýn arasýndaki süreyi temsil eden bir kayan nokta deðiþkeni
+    private float attackTimer;
+    private List<GameObject> enemiesInRange = new List<GameObject>();
 
-    
-    private float attackTimer;// Saldýrý zamanlayýcýsýný saklayan bir kayan nokta deðiþkeni
-    
-    private int enemyHitCount = 0;// Vurulan düþman sayýsýný sayan bir tam sayý deðiþkeni
-    
-    private GameObject enemy;// Hedef düþmaný saklayan bir GameObject deðiþkeni
+    void Start()
+    {
+        attackTimer = attackInterval;
+    }
 
-    
     void OnTriggerEnter(Collider other)
     {
-        // Eðer obje "enemy" etiketi taþýyorsa
         if (other.CompareTag("enemy"))
         {
-            // Hedef düþman olarak bu obje atanýr
-            enemy = other.gameObject;
-            // Saldýrý zamanlayýcýsý, saldýrý aralýðýna ayarlanýr
-            attackTimer = attackInterval;
+            enemiesInRange.Add(other.gameObject);
         }
     }
 
-    void OnTriggerStay(Collider other)
+    void Update()
     {
-        // Eðer bir hedef düþman varsa ve bu obje hedef düþmansa
-        if (enemy != null && other.gameObject == enemy)
+        if (enemiesInRange.Count > 0)
         {
-            // Saldýrý zamanlayýcýsý, geçen süre kadar azaltýlýr
             attackTimer -= Time.deltaTime;
-            // Zamanlayýcý sýfýra ulaþtýysa veya daha düþükse
             if (attackTimer <= 0f)
             {
-                // Ateþ etme iþlemi gerçekleþtirilir
                 FireShot();
-                // Saldýrý zamanlayýcýsý tekrar saldýrý aralýðýna ayarlanýr
-                attackTimer = attackInterval;
+                attackTimer = attackInterval; // Atýþ yaptýktan sonra zamanlayýcýyý sýfýrla
             }
         }
     }
 
-    // Diðer bir obje bu objenin trigger alanýndan çýktýðýnda çaðrýlan fonksiyon
     void OnTriggerExit(Collider other)
     {
-        // Eðer obje hedef düþmansa
-        if (other.gameObject == enemy)
+        if (other.CompareTag("enemy"))
         {
-            // Hedef düþman null olarak ayarlanýr
-            enemy = null;
+            enemiesInRange.Remove(other.gameObject);
         }
     }
 
-    // Mermiyi ateþleyen fonksiyon
     void FireShot()
     {
-        // Merminin prefab'inden bir örnek oluþturulur ve ateþleme noktasýnda konumlandýrýlýr
-        GameObject shot = Instantiate(shotPrefab, firePoint.position, firePoint.rotation);
-        // Oluþturulan mermiye hedef düþman bilgisi iletilir
-        shot.GetComponent<Shot>().Initialize(enemy);
+        // Null referanslarý temizleyin
+        enemiesInRange.RemoveAll(enemy => enemy == null);
 
-        // Düþman vurulduðunda sayacý artýr
-        enemyHitCount++;
+        if (enemiesInRange.Count > 0)
+        {
+            GameObject targetEnemy = enemiesInRange[0];
+            if (targetEnemy != null)
+            {
+                GameObject shot = Instantiate(shotPrefab, firePoint.position, firePoint.rotation);
+                shot.GetComponent<Shot>().Initialize(targetEnemy);
+            }
+        }
     }
 }

@@ -1,45 +1,22 @@
+// 10.02.2025 AI-Tag
+// This was created with assistance from Muse, a Unity Artificial Intelligence product
+
 using UnityEngine;
+using System;
 
 public class Enemy : MonoBehaviour
 {
-    private Vector3 startPosition; // Baþlangýç pozisyonunu saklar
-    public int health = 10; // Düþmanýn saðlýðýný temsil eder
-    private EnemyMovement movementScript; // Hareket scripti referansý
+    public event Action<GameObject> OnDeath;
 
-    // Yeni düþman prefab'i için GameObject referansý
-    public GameObject enemyPrefab;
+    public int health = 10;
 
-    // Yeni düþmanýn doðacaðý pozisyon
-    public Vector3 spawnPoint;
-
-    void Start()
+    public void TakeDamage()
     {
-        startPosition = transform.position; // Baþlangýç pozisyonunu kaydeder
-        movementScript = GetComponent<EnemyMovement>(); // Hareket scriptini alýr
-    }
-
-    public void TakeDamage() // Düþman hasar aldýðýnda çaðrýlýr
-    {
-        health--; // Saðlýðý bir azaltýr
-        if (health <= 0) // Saðlýk sýfýr veya daha az ise
+        health--;
+        if (health <= 0)
         {
-            GameObject newEnemy = Instantiate(enemyPrefab, spawnPoint, Quaternion.identity);
-
-            // Yeni düþmanýn saðlýk deðerini Inspector'da ayarladýðýnýz public 'health' deðiþkenine göre ayarlayýn
-            newEnemy.GetComponent<Enemy>().health = 10;
-
-            Destroy(gameObject); // Mevcut düþmaný yok eder
-            ReturnToStart(); // Baþlangýç pozisyonuna döner
-        }
-    }
-
-    void ReturnToStart() // Baþlangýç pozisyonuna döner
-    {
-        transform.position = startPosition; // Pozisyonu baþlangýca ayarlar
-        health = 10; // Saðlýðý sýfýrlar
-        if (movementScript != null) // Eðer hareket scripti varsa
-        {
-            movementScript.ResetWaypointIndex(); // Waypoint indeksini sýfýrlar
+            OnDeath?.Invoke(gameObject);
+            Destroy(gameObject);
         }
     }
 }
