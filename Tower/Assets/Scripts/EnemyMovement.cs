@@ -38,34 +38,33 @@ public class EnemyMovement : MonoBehaviour
 
     private IEnumerator DamageKaleAfterDelay(float delay) // Hasar verme iþlemini belirli bir süre sonra baþlatan coroutine
     {
-        yield return new WaitForSeconds(delay); // Verilen süre kadar bekler
+        yield return new WaitForSeconds(delay);
 
-        GameObject[] kaleObjects = GameObject.FindGameObjectsWithTag("kale"); // "kale" etiketli tüm nesneleri bul
+        GameObject[] kaleObjects = GameObject.FindGameObjectsWithTag("kale");
         foreach (GameObject kale in kaleObjects)
         {
-            KaleHealth kaleHealth = kale.GetComponent<KaleHealth>(); // KaleHealth bileþenini al
+            KaleHealth kaleHealth = kale.GetComponent<KaleHealth>();
             if (kaleHealth != null)
             {
-                int totalDamage = damageAmount * GetEnemiesAtPointCount(); // Toplam hasarý hesapla
-                kaleHealth.TakeDamage(totalDamage); // Kaleye hasar ver
+                kaleHealth.TakeDamage(damageAmount); // Her bir düþman sabit hasar verir
             }
         }
-        isStopped = false; // Hasar verdikten sonra hareket devam eder
+        isStopped = false;
     }
 
-    private int GetEnemiesAtPointCount() // Belirli bir noktadaki düþman sayýsýný hesaplayan fonksiyon
-    {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, 0.1f); // Düþmanýn etrafýndaki çarpanlarý kontrol eder
-        int enemyCount = 0;
-        foreach (Collider collider in colliders)
-        {
-            if (collider.CompareTag("enemy")) // Eðer çarpan "enemy" etiketine sahipse
-            {
-                enemyCount++; // Düþman sayýsýný artýr
-            }
-        }
-        return enemyCount; // Toplam düþman sayýsýný döndür
-    }
+    //private int GetEnemiesAtPointCount() // Belirli bir noktadaki düþman sayýsýný hesaplayan fonksiyon
+    //{
+    //    Collider[] colliders = Physics.OverlapSphere(transform.position, 0.1f); // Düþmanýn etrafýndaki çarpanlarý kontrol eder
+    //    int enemyCount = 0;
+    //    foreach (Collider collider in colliders)
+    //    {
+    //        if (collider.CompareTag("enemy")) // Eðer çarpan "enemy" etiketine sahipse
+    //        {
+    //            enemyCount++; // Düþman sayýsýný artýr
+    //        }
+    //    }
+    //    return enemyCount; // Toplam düþman sayýsýný döndür
+    //}
 
     public void ResetWaypointIndex() // Düþmanýn yol noktasý indeksini sýfýrlayan fonksiyon
     {
