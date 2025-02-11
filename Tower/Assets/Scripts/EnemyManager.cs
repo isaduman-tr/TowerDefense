@@ -43,6 +43,13 @@ public class EnemyManager : MonoBehaviour
 
     private void HandleEnemyDeath(GameObject enemy) // Düþman öldüðünde çaðrýlan metod
     {
-        currentEnemies.Remove(enemy); // Ölen düþmaný listeden çýkarýr
+        currentEnemies.Remove(enemy);
+
+        Enemy enemyScript = enemy.GetComponent<Enemy>(); // Enemy bileþenini al
+
+        if (enemyScript != null)
+        {
+            FindFirstObjectByType<GameManager>().AddCoins(enemyScript.coinReward);
+        }
     }
 }

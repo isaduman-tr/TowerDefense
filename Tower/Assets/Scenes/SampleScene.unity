@@ -662,6 +662,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1156100825}
   - component: {fileID: 1156100824}
+  - component: {fileID: 1156100826}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -701,6 +702,18 @@ Transform:
   - {fileID: 1435259322}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1156100826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1156100823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fd1e969fac9800428b801dfebed4d11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1228928163
 GameObject:
   m_ObjectHideFlags: 0
@@ -1112,6 +1125,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WayPoint (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1263602028384411886, guid: dd89a8448e9bc2f42a98d9f29573e983, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5624862875933235268, guid: dd89a8448e9bc2f42a98d9f29573e983, type: 3}
       propertyPath: m_Size.x
       value: 5.0326996
@@ -1396,6 +1413,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WayPoint (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8085629562987969866, guid: c5d26ffd47160954db7278e3c73d4366, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1472,6 +1493,10 @@ PrefabInstance:
     - target: {fileID: 5203788214105635573, guid: ca9e51eec84d9984b8d7bd3c985d2519, type: 3}
       propertyPath: m_Name
       value: WayPoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203788214105635573, guid: ca9e51eec84d9984b8d7bd3c985d2519, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6235107245683571708, guid: ca9e51eec84d9984b8d7bd3c985d2519, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1623,6 +1648,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WayPoint (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2640202459810093537, guid: bd435f4967271c7488003c59c89b74e6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7029189591974728920, guid: bd435f4967271c7488003c59c89b74e6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 25.69
@@ -1684,5 +1713,5 @@ SceneRoots:
   - {fileID: 3048021449795767128}
   - {fileID: 3151759486061501720}
   - {fileID: 1228928168}
-  - {fileID: 1156100825}
   - {fileID: 423101373}
+  - {fileID: 1156100825}

@@ -157,7 +157,7 @@ MonoBehaviour:
   - {fileID: 6352638468784674961, guid: dd89a8448e9bc2f42a98d9f29573e983, type: 3}
   speed: 5
   stopDuration: 1
-  damageAmount: 10
+  damageAmount: 5
 --- !u!114 &715931465006199063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,4 +170,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b65497db0c17c224081e3f23979d68c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 50
+  health: 2
+  coinReward: 30

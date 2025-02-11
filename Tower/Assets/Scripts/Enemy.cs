@@ -7,6 +7,8 @@ public class Enemy : MonoBehaviour // MonoBehaviour sýnýfýndan türetilen bir Ene
 
     public int health = 10; // Düþmanýn baþlangýç saðlýðýný 10 olarak ayarlar
 
+    public int coinReward; // Düþman öldüðünde kazandýracaðý coin miktarý
+
     public void TakeDamage() // Düþmanýn hasar almasý için bir metod tanýmlar
     {
         health--; // Saðlýk deðerini bir azaltýr
