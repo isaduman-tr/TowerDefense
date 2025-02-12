@@ -1,5 +1,4 @@
-// 11.02.2025 AI-Tag
-// This was created with assistance from Muse, a Unity Artificial Intelligence product
+
 
 using UnityEngine;
 
