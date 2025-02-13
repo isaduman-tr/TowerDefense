@@ -541,6 +541,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1156100825}
     m_Modifications:
+    - target: {fileID: 1820963171453565689, guid: 0d83cef89a915c34bbfcf475d6f564e4, type: 3}
+      propertyPath: playOnAwake
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3200602944897123145, guid: 0d83cef89a915c34bbfcf475d6f564e4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -584,6 +588,18 @@ PrefabInstance:
     - target: {fileID: 3225863126286083292, guid: 0d83cef89a915c34bbfcf475d6f564e4, type: 3}
       propertyPath: m_Name
       value: Portal red
+      objectReference: {fileID: 0}
+    - target: {fileID: 3886090125575294660, guid: 0d83cef89a915c34bbfcf475d6f564e4, type: 3}
+      propertyPath: playOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6226149414788467609, guid: 0d83cef89a915c34bbfcf475d6f564e4, type: 3}
+      propertyPath: playOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6547356781569712258, guid: 0d83cef89a915c34bbfcf475d6f564e4, type: 3}
+      propertyPath: playOnAwake
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6547356781569712258, guid: 0d83cef89a915c34bbfcf475d6f564e4, type: 3}
       propertyPath: simulationSpeed
