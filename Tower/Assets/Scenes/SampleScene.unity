@@ -530,9 +530,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7883ea74fc2c6245ad90c6f723c81aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shotPrefab: {fileID: 339504092948553430, guid: 61bb82be9608138468c8953471180aa7, type: 3}
+  shotPrefab: {fileID: 1469095700318045817, guid: 9eb5078780b69ab449f51af77efd05a9, type: 3}
   firePoint: {fileID: 167758774}
-  attackInterval: 1
+  attackInterval: 0.1
 --- !u!1001 &555820359
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -839,7 +839,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7883ea74fc2c6245ad90c6f723c81aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shotPrefab: {fileID: 339504092948553430, guid: 61bb82be9608138468c8953471180aa7, type: 3}
+  shotPrefab: {fileID: 1469095700318045817, guid: 9eb5078780b69ab449f51af77efd05a9, type: 3}
   firePoint: {fileID: 2006358211}
   attackInterval: 1
 --- !u!23 &1228928166
@@ -1125,7 +1125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7883ea74fc2c6245ad90c6f723c81aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shotPrefab: {fileID: 339504092948553430, guid: 61bb82be9608138468c8953471180aa7, type: 3}
+  shotPrefab: {fileID: 1469095700318045817, guid: 9eb5078780b69ab449f51af77efd05a9, type: 3}
   firePoint: {fileID: 286842468996193896}
   attackInterval: 1
 --- !u!1 &6584152106170029032
