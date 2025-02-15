@@ -59,4 +59,9 @@ public class TowerAttack : MonoBehaviour
             }
         }
     }
+    public void UpgradeTower()
+    {
+        attackInterval *= 0.8f; // Her yükseltmede %20 hýzlanýyor
+    }
+
 }

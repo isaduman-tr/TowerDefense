@@ -11,6 +11,19 @@ public class ProgressBar : MonoBehaviour
 
     private int count = 0;
     private float timer = 0f;
+    public int GetCount()
+    {
+        return count;
+    }
+
+    public void UsePoints(int amount)
+    {
+        if (count >= amount)
+        {
+            count -= amount;
+            progressText.text = count.ToString();
+        }
+    }
 
     void Awake()
     {
