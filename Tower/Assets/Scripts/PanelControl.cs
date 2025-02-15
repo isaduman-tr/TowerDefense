@@ -1,12 +1,17 @@
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 
 public class PanelControl : MonoBehaviour
 {
+    public AudioMixer mixer;
+    public Slider MusicSlider, SFXSlider;
     public GameObject settingsPanel;
+    public GameObject buttonPanel;
     public GameObject[] panels;
     public Button[] panelButtons; // Tüm butonlar
     private Vector3 defaultScale = new Vector3(1f, 1f, 1f);
@@ -38,12 +43,25 @@ public class PanelControl : MonoBehaviour
     public TextMeshProUGUI castleHealth;
     public TextMeshProUGUI castleLevel;
     public TextMeshProUGUI castleCost;
-    public float proTime=0.2f;
-    public int proLevel=1;
-    public float casHealth=5;
-    public int casLevel=1;
-    public int x = 1;
-    public int y = 1;
+    private float proTime=0.2f;
+    private int proLevel=1;
+    private float casHealth=5;
+    private int casLevel=1;
+    private int x = 1;
+    private int y = 1;
+    private int tower1dmg = 1;
+    public GameObject tower1Attack, tower1CoolDown, tower1Lv1, tower1Lv2, tower1Lv3;
+    private int tower2=2000, tower2dmg=5;
+    public GameObject tower2Button, tower2Attack, tower2CoolDown, tower2Lv1, tower2Lv2, tower2Lv3;
+    private int tower3=5000, tower3dmg=3;
+    public GameObject tower3Button, tower3Attack, tower3CoolDown, tower3Lv1, tower3Lv2, tower3Lv3;
+    private int tower4=7000, tower4dmg=9;
+    public GameObject tower4Button, tower4Attack, tower4CoolDown, tower4Lv1, tower4Lv2, tower4Lv3;
+    private int evolveCount=2;
+
+
+    public List<GameObject> deckPrefabs;  // 12 kartlýk prefab listesi (Inspector'dan ekle)
+    public Transform contentTransform;    // Scroll View içindeki Content objesi
 
     private void Start()
     {
@@ -62,13 +80,12 @@ public class PanelControl : MonoBehaviour
     }
     private void Update()
     {
-        if (battle == true)
-        {
-            Production();
-        }
+        if (battle == true) {Production();}
+        MusicSlider.onValueChanged.AddListener(SetMusicVolume);
+        SFXSlider.onValueChanged.AddListener(SetSFXVolume);
     }
 
-    //menüleri açýp kapatma
+//menüleri açýp kapatma
     public void ShowPanel(int index)
     {
         for (int i = 0; i < panels.Length; i++)
@@ -243,25 +260,27 @@ public class PanelControl : MonoBehaviour
         battle = true;
         battleButton.SetActive(false);
         slider.gameObject.SetActive(true);
-        
+        panels[2].SetActive(false);
+        buttonPanel.SetActive(false);
     }
-    //Upgrade Menüsü
+
+//Geliþtirme Menüsü
     public void UpgradeMenu(int up)
-    { 
-        if (up == 0 && x<=coinSayisi)
+    {
+        if (up == 0 && x <= coinSayisi)
         {
-            proTime +=0.02f;
+            proTime += 0.02f;
+            proTime = Mathf.Round(proTime * 100f) / 100f;
             proLevel += 1;
             productionTime.text = proTime.ToString() + "/s";
             productionLevel.text = proLevel.ToString();
 
             coinSayisi -= x;
-            x += 1;  
-            productionCost.text=x.ToString();
+            x += 1;
+            productionCost.text = x.ToString();
             coinText.text = coinSayisi.ToString();
-
         }
-        else if (up == 1 && y <= coinSayisi) 
+        else if (up == 1 && y <= coinSayisi)
         {
             casHealth += 1;
             casLevel += 1;
@@ -270,10 +289,137 @@ public class PanelControl : MonoBehaviour
 
             coinSayisi -= y;
             y += 1;
-            castleCost.text=y.ToString();
-            coinText.text=coinSayisi.ToString();
+            castleCost.text = y.ToString();
+            coinText.text = coinSayisi.ToString();
+        }
+        else if (up == 2 && tower2 <= coinSayisi) 
+        {
+            tower2Button.SetActive(false); 
+            tower2Attack.SetActive(true);
+            tower2CoolDown.SetActive(true);
+            tower2Attack.transform.parent.GetComponent<Image>().color = new Color32(0x55, 0xA0, 0xFD, 0xFF);
 
+            coinSayisi -= tower2;
+            coinText.text = coinSayisi.ToString();
+        }
+        else if (up == 3 && tower3 <= coinSayisi)
+        {
+            tower3Button.SetActive(false);
+            tower3Attack.SetActive(true);
+            tower3CoolDown.SetActive(true);
+            tower3Attack.transform.parent.GetComponent<Image>().color = new Color32(0x55, 0xA0, 0xFD, 0xFF);
+
+            coinSayisi -= tower3;
+            coinText.text = coinSayisi.ToString();
+        }
+        else if (up == 4 && tower4 <= coinSayisi)
+        {
+            tower4Button.SetActive(false);
+            tower4Attack.SetActive(true);
+            tower4CoolDown.SetActive(true);
+            tower4Attack.transform.parent.GetComponent<Image>().color = new Color32(0x55, 0xA0, 0xFD, 0xFF);
+
+            coinSayisi -= tower4;
+            coinText.text = coinSayisi.ToString();
+        }
+        else if (up == 5)
+        {
+            tower2Attack.SetActive(false);
+            tower2CoolDown.SetActive(false);
+            tower3Attack.SetActive(false);
+            tower3CoolDown.SetActive(false);
+            tower4Attack.SetActive(false);
+            tower4CoolDown.SetActive(false);
+            tower2Button.SetActive(false);
+            tower2Button.SetActive(true);
+            tower3Button.SetActive(true);
+            tower4Button.SetActive(true);
+            tower2Attack.transform.parent.GetComponent<Image>().color = new Color32(0x8C, 0x97, 0xAA, 0xFF);
+            tower3Attack.transform.parent.GetComponent<Image>().color = new Color32(0x8C, 0x97, 0xAA, 0xFF);
+            tower4Attack.transform.parent.GetComponent<Image>().color = new Color32(0x8C, 0x97, 0xAA, 0xFF);
+            tower2 *= 4;
+            tower3 *= 4;
+            tower4 *= 4;
+            tower2Button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = tower2/1000+"k";
+            tower3Button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = tower3/1000+"k";
+            tower4Button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = tower4/1000+"k";
+
+            tower1dmg *= 2;
+            tower2dmg *= 2;
+            tower3dmg *= 2;
+            tower4dmg *= 2;
+            tower1Attack.GetComponent<TextMeshProUGUI>().text = (tower1dmg).ToString();
+            tower2Attack.GetComponent<TextMeshProUGUI>().text = (tower2dmg).ToString();
+            tower3Attack.GetComponent<TextMeshProUGUI>().text = (tower3dmg).ToString();
+            tower4Attack.GetComponent<TextMeshProUGUI>().text = (tower4dmg).ToString();
+
+            ChangeLevel(evolveCount);
+        }
+    }
+    public void ChangeLevel(int level)
+    {
+        if (level == 2)
+        {
+            tower1Lv2.SetActive(true);
+            tower2Lv2.SetActive(true);
+            tower3Lv2.SetActive(true);
+            tower4Lv2.SetActive(true);
+            evolveCount++;
+        }
+         else if (level == 3)
+        {
+            tower1Lv3.SetActive(true);
+            tower2Lv3.SetActive(true);
+            tower3Lv3.SetActive(true);
+            tower4Lv3.SetActive(true);
+            evolveCount++;
         }
     }
 
+//Kart Menüsü
+    public void RandomCard()
+    {
+        GameObject selectedCard = deckPrefabs[Random.Range(0, deckPrefabs.Count)]; // Rastgele kart seç
+
+        // Ýçeride ayný kart var mý kontrol et
+        foreach (Transform card in contentTransform)
+        {
+            if (card.name.StartsWith(selectedCard.name)) // Kartýn ismi içeridekiyle ayný mý?
+            {
+                // Kartýn içindeki TextMeshPro bileþenini bul
+                TextMeshProUGUI cardText = card.GetComponentInChildren<TextMeshProUGUI>();
+
+                if (cardText != null)
+                {
+                    // Þu anki Level'ý al, integer'a çevir ve 1 artýr
+                    int level = int.Parse(cardText.text.Replace("Level ", "")) + 1;
+                    cardText.text = "Level " + level.ToString(); // Yeni deðeri yaz
+                }
+
+                Debug.Log("Kart zaten var, level artýrýldý: " + selectedCard.name);
+                return; // Yeni kart eklemeye gerek yok, fonksiyondan çýk
+            }
+        }
+
+        // Eðer kart yoksa yeni kartý ekle
+        GameObject newCard = Instantiate(selectedCard, contentTransform);
+
+        // Yeni eklenen kartýn içindeki TextMeshPro'yu bul ve "Level 1" olarak baþlat
+        TextMeshProUGUI newCardText = newCard.GetComponentInChildren<TextMeshProUGUI>();
+        if (newCardText != null)
+        {
+            newCardText.text = "Level 1";
+        }
+    }
+
+
+//Settings Paneli
+    public void SetMusicVolume(float volume)
+    {
+        mixer.SetFloat("MusicVolume", Mathf.Log10(volume) * 20);
+    }
+    public void SetSFXVolume(float volume)
+    {
+        mixer.SetFloat("SFXVolume", Mathf.Log10(volume) * 20);
+    }
 }
