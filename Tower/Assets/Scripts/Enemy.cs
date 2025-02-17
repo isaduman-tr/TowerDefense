@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour // MonoBehaviour sýnýfýndan türetilen bir Ene
     [Header("Unity Setup")]
     public ParticleSystem deathParticles;
 
+    public event Action<GameObject> OnDeath; // 'Enemy' öldüðünde tetiklenecek bir olay (event) tanýmlar
     public int health = 10; // Düþmanýn baþlangýç saðlýðýný 10 olarak ayarlar
 
     public int coinReward; // Düþman öldüðünde kazandýracaðý coin miktarý
@@ -30,9 +31,9 @@ public class Enemy : MonoBehaviour // MonoBehaviour sýnýfýndan türetilen bir Ene
 
     void Die()
     {
-        if (explosionEffect != null)
+        if (deathParticles != null)
         {
-            Instantiate(explosionEffect, transform.position, Quaternion.identity);
+            Instantiate(deathParticles, transform.position, Quaternion.identity);
         }
         else
         {
