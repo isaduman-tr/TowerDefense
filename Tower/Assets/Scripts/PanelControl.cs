@@ -62,6 +62,10 @@ public class PanelControl : MonoBehaviour
 
     public List<GameObject> deckPrefabs;  // 12 kartlýk prefab listesi (Inspector'dan ekle)
     public Transform contentTransform;    // Scroll View içindeki Content objesi
+    public float totalDmg = 1.0f;
+    public TextMeshProUGUI totalDmgText;
+    public float totalHealth = 1.0f;
+    public TextMeshProUGUI totalHealthText;
 
     private void Start()
     {
@@ -273,7 +277,7 @@ public class PanelControl : MonoBehaviour
             proTime = Mathf.Round(proTime * 100f) / 100f;
             proLevel += 1;
             productionTime.text = proTime.ToString() + "/s";
-            productionLevel.text = proLevel.ToString();
+            productionLevel.text ="Level"+ proLevel.ToString();
 
             coinSayisi -= x;
             x += 1;
@@ -285,7 +289,7 @@ public class PanelControl : MonoBehaviour
             casHealth += 1;
             casLevel += 1;
             castleHealth.text = casHealth.ToString();
-            castleLevel.text = casLevel.ToString();
+            castleLevel.text ="Level"+ casLevel.ToString();
 
             coinSayisi -= y;
             y += 1;
@@ -379,7 +383,20 @@ public class PanelControl : MonoBehaviour
 //Kart Menüsü
     public void RandomCard()
     {
-        GameObject selectedCard = deckPrefabs[Random.Range(0, deckPrefabs.Count)]; // Rastgele kart seç
+        int c = Random.Range(0, deckPrefabs.Count);
+        GameObject selectedCard = deckPrefabs[c]; // Rastgele kart seç
+        if (c <= 5)
+        {
+            totalDmg += 0.1f;
+            totalDmg = Mathf.Round(totalDmg * 10f) / 10f;
+            totalDmgText.text="x"+totalDmg;
+        }
+        else
+        {
+            totalHealth += 0.1f;
+            totalHealth = Mathf.Round(totalHealth * 10f) / 10f;
+            totalHealthText.text = "x" + totalHealth;
+        }
 
         // Ýçeride ayný kart var mý kontrol et
         foreach (Transform card in contentTransform)
