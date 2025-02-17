@@ -170,5 +170,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b65497db0c17c224081e3f23979d68c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< Updated upstream
+  deathParticles: {fileID: 2367750547334489490, guid: 95e0f1c74c8b09a47aaaaebf9010abeb, type: 3}
   health: 10
+=======
+  explosionEffect: {fileID: 0}
+  health: 2
+>>>>>>> Stashed changes
   coinReward: 30
