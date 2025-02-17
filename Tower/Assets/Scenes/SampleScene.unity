@@ -1535,8 +1535,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy1Prefab: {fileID: 1741503427843684797, guid: 76616427948d2ae4c994308fe3067105, type: 3}
-  enemy2Prefab: {fileID: 1741503427843684797, guid: f1a4de3b8b70ec74db5abd936a84c4d7, type: 3}
-  enemy3Prefab: {fileID: 1741503427843684797, guid: 6a9373387e648984db157f1f9a87b272, type: 3}
+  enemy2Prefab: {fileID: 1741503427843684797, guid: 8e894cc8e5a95994c871458e03078897, type: 3}
+  enemy3Prefab: {fileID: 1741503427843684797, guid: 0a077196f15229047b47170c6b6e5d32, type: 3}
   spawnPoint: {fileID: 622460224}
 --- !u!4 &1156100825
 Transform:
