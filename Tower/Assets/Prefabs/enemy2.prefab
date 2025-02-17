@@ -15,6 +15,11 @@ GameObject:
   - component: {fileID: 4364113193835169451}
   - component: {fileID: 374967447772368444}
   - component: {fileID: 715931465006199063}
+<<<<<<< Updated upstream
+  - component: {fileID: 3790452840460449312}
+=======
+  - component: {fileID: 2503396463887404655}
+>>>>>>> Stashed changes
   m_Layer: 0
   m_Name: enemy2
   m_TagString: enemy
@@ -170,5 +175,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b65497db0c17c224081e3f23979d68c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
+  deathParticles: {fileID: 2367750547334489490, guid: 95e0f1c74c8b09a47aaaaebf9010abeb, type: 3}
+  health: 3
   coinReward: 20
+<<<<<<< Updated upstream
+--- !u!114 &3790452840460449312
+=======
+--- !u!114 &2503396463887404655
+>>>>>>> Stashed changes
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1741503427843684797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+<<<<<<< Updated upstream
+  m_Script: {fileID: 11500000, guid: 0c54409ebce1e7e44a52fe121475db8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 3
+=======
+  m_Script: {fileID: 11500000, guid: 4f9574424cc3f224e9ccaa39757df58d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 2
+  explosionEffect: {fileID: 740713366904398893, guid: 34ce882e58469304a87e56168f1f7d4b, type: 3}
+>>>>>>> Stashed changes

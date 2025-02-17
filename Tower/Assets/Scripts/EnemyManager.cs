@@ -52,4 +52,5 @@ public class EnemyManager : MonoBehaviour
             FindFirstObjectByType<GameManager>().AddCoins(enemyScript.coinReward);
         }
     }
+   
 }
