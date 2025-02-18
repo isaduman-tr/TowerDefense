@@ -4,6 +4,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class PanelControl : MonoBehaviour
@@ -59,7 +60,6 @@ public class PanelControl : MonoBehaviour
     public GameObject tower4Button, tower4Attack, tower4CoolDown, tower4Lv1, tower4Lv2, tower4Lv3;
     private int evolveCount=2;
 
-
     public List<GameObject> deckPrefabs;  // 12 kartlýk prefab listesi (Inspector'dan ekle)
     public Transform contentTransform;    // Scroll View içindeki Content objesi
     public float totalDmg = 1.0f;
@@ -104,60 +104,42 @@ public class PanelControl : MonoBehaviour
     public void CloseSettings()  {settingsPanel.SetActive(false); Time.timeScale = 1f; }
 
 //BattlePass butonlarý
-    public void ButtonClicked(int buttonIndex)
+    public void ButtonClicked( int buttonIndex)
     {
         int diamondsGained = 0;
         int cardsGained = 0;
         switch (buttonIndex)
         {
-            case 0:
-                diamondsGained = 1;  // b0 ve b2 butonlarý 1 elmas kazandýrýr
-                break;
-            case 1: 
-                diamondsGained = 2;  // b1, b3, b13, b16, b23, b27 butonlarý 2 elmas kazandýrýr
-                break;
-            case 2:
-                diamondsGained = 3;  // b4, b7, b11, b15, b20, b26 butonlarý 3 elmas kazandýrýr
-                break;
-            case 3:
-                diamondsGained = 4;  // b6, b10, b17, b22, b25 butonlarý 4 elmas kazandýrýr
-                break;
-            case 4:
-                diamondsGained = 5;  // b8, b12, b18, b21, b28, b31, b33 butonlarý 5 elmas kazandýrýr
-                break;
-            case 5:
-                diamondsGained = 10; // b32, b43, b48, b55 butonlarý 10 elmas kazandýrýr
-                break;
-            case 6:
-                diamondsGained = 15; // b34, b36, b40, b47, b50, b57 butonlarý 15 elmas kazandýrýr
-                break;
-            case 7:
-                diamondsGained = 20; // b35, b38, b41, b44, b46, b51, b53, b56 butonlarý 20 elmas kazandýrýr
-                break;
-            case 8:
-                diamondsGained = 25; // b39, b45, b52, b28 butonlarý 25 elmas kazandýrýr
-                break;
-            case 9:
-                cardsGained = 1;    // b5 ve b14 butonlarý 1 kart kazandýrýr
-                break;
-            case 10:
-                cardsGained = 2;    // b9 ve b19 butonlarý 2 kart kazandýrýr
-                break;
-            case 11:
-                cardsGained = 3;    // b24 ve b29 butonlarý 3 kart kazandýrýr
-                break;
-            case 12:
-                cardsGained = 5;    // b30, b37, b42, b49, b54, b59 butonlarý 5 kart kazandýrýr
-                break;
-            default:
-                diamondsGained = 0; // Geçersiz bir buton numarasý
-                break;
+            case 0: diamondsGained = 1; break;
+            case 1: diamondsGained = 2; break;
+            case 2: diamondsGained = 3; break;
+            case 3: diamondsGained = 4; break;
+            case 4: diamondsGained = 5; break;
+            case 5: diamondsGained = 10; break;
+            case 6: diamondsGained = 15; break;
+            case 7: diamondsGained = 20; break;
+            case 8: diamondsGained = 25; break;
+            case 9: cardsGained = 1; break;
+            case 10: cardsGained = 2; break;
+            case 11: cardsGained = 3; break;
+            case 12: cardsGained = 5; break;
+            default: diamondsGained = 0; break;
         }
         diamondSayisi += diamondsGained;
         diamondText.text=diamondSayisi.ToString();
         cardSayisi += cardsGained;
-        cardText.text=cardSayisi.ToString(); 
-    }   
+        cardText.text=cardSayisi.ToString();
+        
+    }
+    public void DisableCurrentButton()
+    {
+        GameObject clickedObject = EventSystem.current.currentSelectedGameObject;
+        Button clickedButton = clickedObject.GetComponent<Button>();
+        clickedButton.interactable = false;
+        clickedButton.image.color = new Color(0.333f, 0.627f, 0.992f); // #55A0FD
+        clickedButton.transform.Find("TickIcon").gameObject.SetActive(true); // Tik iþaretini görünür yap
+
+    }
     void LockButton(Button btn, List<Button> lockedList)
     {
         btn.interactable = false; // Týklamayý engelle
@@ -197,7 +179,7 @@ public class PanelControl : MonoBehaviour
         buttonToUnlock.colors = cb;
         if (buttonToUnlock.image != null)
         {
-            buttonToUnlock.image.color = new Color(0.333f, 0.627f, 0.992f); // #55A0FD
+            buttonToUnlock.image.color = new Color(0.0f, 0.44f, 0.99f); // #0071FD Rengi
 
         }
     }
@@ -357,6 +339,11 @@ public class PanelControl : MonoBehaviour
             tower3Attack.GetComponent<TextMeshProUGUI>().text = (tower3dmg).ToString();
             tower4Attack.GetComponent<TextMeshProUGUI>().text = (tower4dmg).ToString();
 
+            GameObject clickedObject = EventSystem.current.currentSelectedGameObject;
+            Transform imageTransform = clickedObject.transform.Find($"Image{evolveCount - 1}"); 
+            imageTransform.GetComponent<Image>().color = new Color(0.281f, 0.541f, 0.898f); // Rengi deðiþtir
+
+
             ChangeLevel(evolveCount);
         }
     }
@@ -370,7 +357,7 @@ public class PanelControl : MonoBehaviour
             tower4Lv2.SetActive(true);
             evolveCount++;
         }
-         else if (level == 3)
+        else if (level == 3)
         {
             tower1Lv3.SetActive(true);
             tower2Lv3.SetActive(true);
@@ -378,57 +365,65 @@ public class PanelControl : MonoBehaviour
             tower4Lv3.SetActive(true);
             evolveCount++;
         }
+        else if (level == 4) evolveCount++;
+        else if (level == 5) evolveCount++;
+
     }
 
 //Kart Menüsü
     public void RandomCard()
     {
-        int c = Random.Range(0, deckPrefabs.Count);
-        GameObject selectedCard = deckPrefabs[c]; // Rastgele kart seç
-        if (c <= 5)
+        if (cardSayisi >= 1)
         {
-            totalDmg += 0.1f;
-            totalDmg = Mathf.Round(totalDmg * 10f) / 10f;
-            totalDmgText.text="x"+totalDmg;
-        }
-        else
-        {
-            totalHealth += 0.1f;
-            totalHealth = Mathf.Round(totalHealth * 10f) / 10f;
-            totalHealthText.text = "x" + totalHealth;
-        }
-
-        // Ýçeride ayný kart var mý kontrol et
-        foreach (Transform card in contentTransform)
-        {
-            if (card.name.StartsWith(selectedCard.name)) // Kartýn ismi içeridekiyle ayný mý?
+            int c = Random.Range(0, deckPrefabs.Count);
+            GameObject selectedCard = deckPrefabs[c]; // Rastgele kart seç
+            if (c <= 5)
             {
-                // Kartýn içindeki TextMeshPro bileþenini bul
-                TextMeshProUGUI cardText = card.GetComponentInChildren<TextMeshProUGUI>();
-
-                if (cardText != null)
-                {
-                    // Þu anki Level'ý al, integer'a çevir ve 1 artýr
-                    int level = int.Parse(cardText.text.Replace("Level ", "")) + 1;
-                    cardText.text = "Level " + level.ToString(); // Yeni deðeri yaz
-                }
-
-                Debug.Log("Kart zaten var, level artýrýldý: " + selectedCard.name);
-                return; // Yeni kart eklemeye gerek yok, fonksiyondan çýk
+                totalDmg += 0.1f;
+                totalDmg = Mathf.Round(totalDmg * 10f) / 10f;
+                totalDmgText.text="x"+totalDmg;
             }
-        }
+            else
+            {
+                totalHealth += 0.1f;
+                totalHealth = Mathf.Round(totalHealth * 10f) / 10f;
+                totalHealthText.text = "x" + totalHealth;
+            }
 
-        // Eðer kart yoksa yeni kartý ekle
-        GameObject newCard = Instantiate(selectedCard, contentTransform);
+            // Ýçeride ayný kart var mý kontrol et
+            foreach (Transform card in contentTransform)
+            {
+                if (card.name.StartsWith(selectedCard.name)) // Kartýn ismi içeridekiyle ayný mý?
+                {
+                    // Kartýn içindeki TextMeshPro bileþenini bul
+                    TextMeshProUGUI cardText = card.GetComponentInChildren<TextMeshProUGUI>();
 
-        // Yeni eklenen kartýn içindeki TextMeshPro'yu bul ve "Level 1" olarak baþlat
-        TextMeshProUGUI newCardText = newCard.GetComponentInChildren<TextMeshProUGUI>();
-        if (newCardText != null)
-        {
-            newCardText.text = "Level 1";
+                    if (cardText != null)
+                    {
+                        // Þu anki Level'ý al, integer'a çevir ve 1 artýr
+                        int level = int.Parse(cardText.text.Replace("Level ", "")) + 1;
+                        cardText.text = "Level " + level.ToString(); // Yeni deðeri yaz
+                    }
+
+                    Debug.Log("Kart zaten var, level artýrýldý: " + selectedCard.name);
+                    return; // Yeni kart eklemeye gerek yok, fonksiyondan çýk
+                }
+            }
+
+            // Eðer kart yoksa yeni kartý ekle
+            GameObject newCard = Instantiate(selectedCard, contentTransform);
+
+            // Yeni eklenen kartýn içindeki TextMeshPro'yu bul ve "Level 1" olarak baþlat
+            TextMeshProUGUI newCardText = newCard.GetComponentInChildren<TextMeshProUGUI>();
+            if (newCardText != null)
+            {
+                newCardText.text = "Level 1";
+            }
+            cardSayisi--;
+            cardText.text= cardSayisi.ToString();
         }
+        
     }
-
 
 //Settings Paneli
     public void SetMusicVolume(float volume)
