@@ -5,7 +5,7 @@ public class EnemyDamageFlash : MonoBehaviour
 {
     private MeshRenderer meshRenderer; // Enemy'nin MeshRenderer bileþeni
     private Color originalColor; // Orijinal rengini saklamak için
-    private float flashDuration = 0.25f; // 0.25 saniye boyunca beyaz olacak
+    private float flashDuration = 1f; // 0.25 saniye boyunca beyaz olacak
 
     private void Start()
     {
