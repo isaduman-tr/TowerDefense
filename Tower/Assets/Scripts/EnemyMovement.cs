@@ -17,7 +17,15 @@ public class EnemyMovement : MonoBehaviour
 
         Transform targetWaypoint = waypoints[currentWaypointIndex]; // Hedef yol noktasýný alýr
         Vector3 direction = targetWaypoint.position - transform.position; // Hedefe doðru yön vektörü hesaplar
-        // Düþmaný hedefe doðru hareket ettirir
+
+        // Gemi yönünü hedefe doðru yavaþça döndür
+        if (direction != Vector3.zero)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * 5f);
+        }
+
+        // Düþmaný hedefe doðru hareket ettir
         transform.Translate(direction.normalized * speed * Time.deltaTime, Space.World);
 
         // Düþman hedef yol noktasýna ulaþtýðýnda
