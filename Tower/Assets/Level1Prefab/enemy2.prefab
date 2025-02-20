@@ -77,9 +77,6 @@ PrefabInstance:
       addedObject: {fileID: 1572765077674648953}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fd91711811e76c94d8349b55139c5532, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4671546361351578403}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fd91711811e76c94d8349b55139c5532, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 2726864409035356501}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fd91711811e76c94d8349b55139c5532, type: 3}
       insertIndex: -1
@@ -87,6 +84,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fd91711811e76c94d8349b55139c5532, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1156620429952271357}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fd91711811e76c94d8349b55139c5532, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -2163751717543790470}
   m_SourcePrefab: {fileID: 100100000, guid: fd91711811e76c94d8349b55139c5532, type: 3}
 --- !u!1 &8277764746835927214 stripped
 GameObject:
@@ -120,27 +120,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!65 &4671546361351578403
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8277764746835927214}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.4280001, y: 0.64, z: 2.8521469}
-  m_Center: {x: 0, y: 0.32, z: 0}
 --- !u!114 &2726864409035356501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,3 +167,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c54409ebce1e7e44a52fe121475db8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!135 &-2163751717543790470
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8277764746835927214}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 10
+  m_Center: {x: 0, y: 0, z: 0}

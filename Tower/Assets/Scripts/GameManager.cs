@@ -1,11 +1,11 @@
-
-
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     private int totalCoins = 0;
 
+    
     void Start()
     {
     }
@@ -19,4 +19,6 @@ public class GameManager : MonoBehaviour
         totalCoins += amount;
         Debug.Log("Toplam Coin: " + totalCoins);
     }
+
+   
 }

@@ -9,6 +9,8 @@ TagManager:
   - kale
   - enemy1
   - Shot
+  - shot
+  - Tower
   layers:
   - Default
   - TransparentFX

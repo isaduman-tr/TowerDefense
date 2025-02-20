@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1875096486835059449}
   - component: {fileID: 8875012078923842091}
   - component: {fileID: 8272773784639722111}
+  - component: {fileID: -6165985861999362313}
   m_Layer: 0
   m_Name: Arrow 1
   m_TagString: Untagged
@@ -28,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 8.529999, y: 0.55, z: -51.480694}
-  m_LocalScale: {x: 0.24999999, y: 0.25, z: 0.25}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -86,3 +87,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &-6165985861999362313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 374342362586980191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b88cfa267362d94c9b229c7131e6f83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 50

@@ -1,5 +1,9 @@
 using UnityEngine;
 using System.Collections.Generic;
+using TMPro;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using Unity.VisualScripting;
 
 // TowerAttack sýnýfý, Unity'nin MonoBehaviour sýnýfýndan türetilmiþ bir sýnýftýr
 public class TowerAttack : MonoBehaviour
@@ -11,19 +15,11 @@ public class TowerAttack : MonoBehaviour
     private float attackTimer; // Atýþlar arasýndaki zamanlayýcý
     private List<GameObject> enemiesInRange = new List<GameObject>(); // Menzile giren düþmanlarýn listesi
 
+    
     void Start()
     {
         attackTimer = attackInterval; // Zamanlayýcýyý baþlangýçta atýþ aralýðýna ayarla
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("enemy")) // Eðer diðer nesne "enemy" etiketiyle etiketlenmiþse
-        {
-            enemiesInRange.Add(other.gameObject); // Düþmaný menzil listesine ekle
-        }
-    }
-
+    }    
     void Update()
     {
         if (enemiesInRange.Count > 0) // Eðer menzilde düþman varsa
@@ -37,6 +33,13 @@ public class TowerAttack : MonoBehaviour
         }
     }
 
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("enemy")) // Eðer diðer nesne "enemy" etiketiyle etiketlenmiþse
+        {
+            enemiesInRange.Add(other.gameObject); // Düþmaný menzil listesine ekle
+        }
+    }
     void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("enemy")) // Eðer diðer nesne menzilden çýkýyorsa
@@ -44,7 +47,6 @@ public class TowerAttack : MonoBehaviour
             enemiesInRange.Remove(other.gameObject); // Düþmaný menzil listesinden çýkar
         }
     }
-
     void FireShot()
     {
         enemiesInRange.RemoveAll(enemy => enemy == null); // Null referanslarý temizleyin
@@ -62,6 +64,5 @@ public class TowerAttack : MonoBehaviour
     public void UpgradeTower()
     {
         attackInterval *= 0.8f; // Her yükseltmede %20 hýzlanýyor
-    }
-
+    } 
 }
