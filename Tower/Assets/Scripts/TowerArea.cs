@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class TowerArea : MonoBehaviour
 {
+    //yorum satýrý
     public GameObject[] towers;
     public TextMeshProUGUI attackText;
     public float attack = 1;
