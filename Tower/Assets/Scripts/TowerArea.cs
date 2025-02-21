@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -5,8 +6,8 @@ using UnityEngine.UI;
 
 public class TowerArea : MonoBehaviour
 {
-    //yorum satýrý
     public GameObject[] towers;
+    public GameObject towerRange;
     public TextMeshProUGUI attackText;
     public float attack = 1;
     public TextMeshProUGUI cooldownText;
@@ -41,6 +42,7 @@ public class TowerArea : MonoBehaviour
                     Transform panel = transform.Find("UpgradePanel"); // Kendi panelini bul
                     if (panel != null)
                         panel.gameObject.SetActive(!panel.gameObject.activeSelf); // Açýk/kapalý toggle
+                        towerRange.gameObject.SetActive(!towerRange.gameObject.activeSelf);
                 }
             }
         }

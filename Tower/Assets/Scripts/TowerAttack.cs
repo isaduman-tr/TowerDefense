@@ -35,9 +35,17 @@ public class TowerAttack : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("enemy")) // Eðer diðer nesne "enemy" etiketiyle etiketlenmiþse
+        if (other.CompareTag("enemy"))
         {
-            enemiesInRange.Add(other.gameObject); // Düþmaný menzil listesine ekle
+            Transform parent = other.transform.parent;
+            if (parent != null && parent.CompareTag("enemy")) // Eðer çarpan nesne child ise, ana düþmaný kontrol et
+            {
+                enemiesInRange.Add(parent.gameObject);
+            }
+            else
+            {
+                enemiesInRange.Add(other.gameObject);
+            }
         }
     }
     void OnTriggerExit(Collider other)

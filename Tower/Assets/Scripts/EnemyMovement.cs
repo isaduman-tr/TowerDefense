@@ -59,7 +59,16 @@ public class EnemyMovement : MonoBehaviour
         }
         isStopped = false;
     }
-
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("enemy"))
+        {
+            // Düþmanlar çarpýþtýðýnda tepki versin (örn: geri itme)
+            Vector3 pushDirection = collision.transform.position - transform.position;
+            pushDirection = pushDirection.normalized; // Yönü normalize et
+            GetComponent<Rigidbody>().AddForce(-pushDirection * 2f, ForceMode.Impulse);
+        }
+    }
     //private int GetEnemiesAtPointCount() // Belirli bir noktadaki düþman sayýsýný hesaplayan fonksiyon
     //{
     //    Collider[] colliders = Physics.OverlapSphere(transform.position, 0.1f); // Düþmanýn etrafýndaki çarpanlarý kontrol eder
