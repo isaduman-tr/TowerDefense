@@ -19,6 +19,7 @@ public class TowerAttack : MonoBehaviour
     void Start()
     {
         attackTimer = attackInterval; // Zamanlayýcýyý baþlangýçta atýþ aralýðýna ayarla
+        TowerArea.attack = 1;
     }    
     void Update()
     {

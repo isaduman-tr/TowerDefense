@@ -9,7 +9,7 @@ public class TowerArea : MonoBehaviour
     public GameObject[] towers;
     public GameObject towerRange;
     public TextMeshProUGUI attackText;
-    public float attack = 1;
+    public static float attack = 1;
     public TextMeshProUGUI cooldownText;
     public float cooldown = 1;
     public TextMeshProUGUI upgradeCostText;
