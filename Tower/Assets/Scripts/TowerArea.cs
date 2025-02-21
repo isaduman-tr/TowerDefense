@@ -21,7 +21,7 @@ public class TowerArea : MonoBehaviour
     public GameObject UpgradePanel;
     public Scrollbar scrollbar; // Scrollbar referansý
     private bool towerchoose = true;
-
+    //yorum satýrý
     void Update()
     {
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began) // Kule kurmak için TowerArea objesine týklayýnca açýlan paneller
