@@ -11,7 +11,7 @@ public class TowerAttack : MonoBehaviour
     public GameObject shotPrefab; // Atýþ için kullanýlacak prefab nesnesi
     public Transform firePoint; // Atýþýn baþlayacaðý nokta
     public float attackInterval = 1f; // Atýþlar arasýndaki süre
-
+    public float towerDamage = 1;
     private float attackTimer; // Atýþlar arasýndaki zamanlayýcý
     private List<GameObject> enemiesInRange = new List<GameObject>(); // Menzile giren düþmanlarýn listesi
 
@@ -19,10 +19,12 @@ public class TowerAttack : MonoBehaviour
     void Start()
     {
         attackTimer = attackInterval; // Zamanlayýcýyý baþlangýçta atýþ aralýðýna ayarla
-        TowerArea.attack = 1;
+
     }    
     void Update()
     {
+        towerDamage = TowerArea.attack;
+
         if (enemiesInRange.Count > 0) // Eðer menzilde düþman varsa
         {
             attackTimer -= Time.deltaTime; // Zamanlayýcýyý azalt

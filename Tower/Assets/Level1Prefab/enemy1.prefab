@@ -133,7 +133,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathParticles: {fileID: 2367750547334489490, guid: 95e0f1c74c8b09a47aaaaebf9010abeb, type: 3}
-  health: 2
+  FloatingTextPrefab: {fileID: 8345985765410439228, guid: 8c17e03d41fd8fb43ae92086cef9b807, type: 3}
+  StartingHealth: 4
+  CurrentHealth: 4
   coinReward: 10
 --- !u!114 &5959461949742326005
 MonoBehaviour:
