@@ -342,6 +342,7 @@ MonoBehaviour:
   - {fileID: 2192941333806374593, guid: b424d46d448e3e24697cf2ec068f1647, type: 3}
   - {fileID: 2692529768614829880, guid: d1e68d974fab4a046a00a1228b069135, type: 3}
   - {fileID: 8730643684079542262, guid: 387b1b31e1511dd4895a11277044eca5, type: 3}
+  - {fileID: 8730643684079542262, guid: 8f45865cc6d5e024d9ffc7cc52221eba, type: 3}
   speed: 10
   stopDuration: 1
   damageAmount: 10
