@@ -239,7 +239,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: fd91711811e76c94d8349b55139c5532, type: 3}
       propertyPath: m_Name
-      value: enemy1
+      value: enemy2
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: fd91711811e76c94d8349b55139c5532, type: 3}
       propertyPath: m_TagString
@@ -260,9 +260,6 @@ PrefabInstance:
       addedObject: {fileID: 3717963393460082718}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fd91711811e76c94d8349b55139c5532, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5959461949742326005}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fd91711811e76c94d8349b55139c5532, type: 3}
-      insertIndex: -1
       addedObject: {fileID: -4321802312138617999}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fd91711811e76c94d8349b55139c5532, type: 3}
       insertIndex: -1
@@ -270,6 +267,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fd91711811e76c94d8349b55139c5532, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8441600140308640633}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fd91711811e76c94d8349b55139c5532, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -2185032677028113707}
   m_SourcePrefab: {fileID: 100100000, guid: fd91711811e76c94d8349b55139c5532, type: 3}
 --- !u!4 &4968513007649269801 stripped
 Transform:
@@ -325,27 +325,6 @@ MonoBehaviour:
   StartingHealth: 4
   CurrentHealth: 4
   coinReward: 10
---- !u!114 &5959461949742326005
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5744452293922124435}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1162f02d39074d94c8a8836ad29a3b21, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  waypoints:
-  - {fileID: 6905546931839804597, guid: 691e31447b8d40049adbc65796a3d334, type: 3}
-  - {fileID: 2192941333806374593, guid: b424d46d448e3e24697cf2ec068f1647, type: 3}
-  - {fileID: 2692529768614829880, guid: d1e68d974fab4a046a00a1228b069135, type: 3}
-  - {fileID: 8730643684079542262, guid: 387b1b31e1511dd4895a11277044eca5, type: 3}
-  - {fileID: 8730643684079542262, guid: 8f45865cc6d5e024d9ffc7cc52221eba, type: 3}
-  speed: 10
-  stopDuration: 1
-  damageAmount: 10
 --- !u!114 &-4321802312138617999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -395,3 +374,40 @@ MonoBehaviour:
   healthBarImage: {fileID: 6801365942102492980}
   healthBarCanvas: {fileID: 7342738929232000652}
   smoothSpeed: 5
+--- !u!114 &-2185032677028113707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5744452293922124435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2ec6e34ab2f9c140ac56747fb4249fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waypoints:
+  - {fileID: 6905546931839804597, guid: 691e31447b8d40049adbc65796a3d334, type: 3}
+  - {fileID: 2192941333806374593, guid: b424d46d448e3e24697cf2ec068f1647, type: 3}
+  - {fileID: 2692529768614829880, guid: d1e68d974fab4a046a00a1228b069135, type: 3}
+  - {fileID: 8730643684079542262, guid: 387b1b31e1511dd4895a11277044eca5, type: 3}
+  randomPoints:
+  - {fileID: 5026368818731270941, guid: fae000432d9212748a7f032eaef65ef2, type: 3}
+  - {fileID: 2980175147350316961, guid: 8eaa0d63359bc9a4a8c545f8e7fc3aaa, type: 3}
+  - {fileID: 8511449184889865228, guid: d2a958783ecae814d93120821c7a2686, type: 3}
+  - {fileID: 647153222570753298, guid: 12282eb9a987bd445885e09b56a0f9d8, type: 3}
+  - {fileID: 5616161312120267608, guid: 66d37e4eadf9aa547a6a90299dcc8110, type: 3}
+  - {fileID: 1139281072673816143, guid: 271b27434fe7edf4483cac770740e739, type: 3}
+  - {fileID: 5107963937820860555, guid: 6aeb252a179855348b0225489eb6d88a, type: 3}
+  - {fileID: 6031999206142232035, guid: 60af9b67c376c1243a4b83849955bd8c, type: 3}
+  - {fileID: 7065686557573368902, guid: c7976cde8d2461041a93ddf149b3289a, type: 3}
+  - {fileID: 3509571508604741147, guid: b14bfa2f78a21474a96640d3f612455c, type: 3}
+  - {fileID: 8824854238608943976, guid: 183411f5bfe192749a9af0a112b2603e, type: 3}
+  - {fileID: 8614511445979466828, guid: 247ff3cd15f6ee7468865285095dcc04, type: 3}
+  - {fileID: 3659118613200783369, guid: 80ada54b131dc3a45b544cbf4c5d0122, type: 3}
+  - {fileID: 3700368806235266910, guid: 1c4b1c54558b01d439366e42f4e8c94d, type: 3}
+  - {fileID: 2186174154724109993, guid: fb902004b50f53244be80442d5f83296, type: 3}
+  - {fileID: 57635114212870024, guid: f8d26e76c8257f644b7ed274ed8b6d29, type: 3}
+  speed: 20
+  enemyPrefab: {fileID: 5744452293922124435}
+  damageAmount: 10

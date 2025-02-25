@@ -3,48 +3,52 @@ using System.Collections;
 
 public class EnemyMovement : MonoBehaviour
 {
-    public Transform[] waypoints; // Düşmanın izleyeceği yol noktalarının bir dizisi
-    public float speed = 5f; // Düşmanın hareket hızı
-    private int currentWaypointIndex = 0; // Şu anda hedeflenen yol noktasının indexi
-    private bool isStopped = false; // Düşmanın durup durmadığını kontrol eden bayrak
-    public float stopDuration = 1f; // Düşmanın durup hasar vereceği süre
-    public int damageAmount = 1; // Her düşmanın kaleye vereceği hasar miktarı
+    public Transform[] waypoints; // DÃ¼ÅŸmanÄ±n izleyeceÄŸi yol noktalarÄ±nÄ±n bir dizisi
+    public Transform[] waitingPoints;
+    private Transform targetPoint; // SeÃ§ilen hedef nokta
 
-    void Update() // Her karede çağrılan Unity fonksiyonu
+    public float speed = 5f; // DÃ¼ÅŸmanÄ±n hareket hÄ±zÄ± 
+    private int currentWaypointIndex = 0; // Åu anda hedeflenen yol noktasÄ±nÄ±n indexi
+    private bool isStopped = false; // DÃ¼ÅŸmanÄ±n durup durmadÄ±ÄŸÄ±nÄ± kontrol eden bayrak
+    public float stopDuration = 1f; // DÃ¼ÅŸmanÄ±n durup hasar vereceÄŸi sÃ¼re
+    public int damageAmount = 1; // Her dÃ¼ÅŸmanÄ±n kaleye vereceÄŸi hasar miktarÄ±
+    internal object occupiedRandomPoints;
+
+    void Update() // Her karede Ã§aÄŸrÄ±lan Unity fonksiyonu
     {
-        if (waypoints.Length == 0 || isStopped) // Eğer yol noktaları yoksa veya düşman duruyorsa
-            return; // Fonksiyondan çıkılır
+        if (waypoints.Length == 0 || isStopped) // EÄŸer yol noktalarÄ± yoksa veya dÃ¼ÅŸman duruyorsa
+            return; // Fonksiyondan Ã§Ä±kÄ±lÄ±r
 
-        Transform targetWaypoint = waypoints[currentWaypointIndex]; // Hedef yol noktasını alır
-        Vector3 direction = targetWaypoint.position - transform.position; // Hedefe doğru yön vektörü hesaplar
+        Transform targetWaypoint = waypoints[currentWaypointIndex]; // Hedef yol noktasÄ±nÄ± alÄ±r
+        Vector3 direction = targetWaypoint.position - transform.position; // Hedefe doÄŸru yÃ¶n vektÃ¶rÃ¼ hesaplar
 
-        // Gemi yönünü hedefe doğru yavaşça döndür
+        // Gemi yÃ¶nÃ¼nÃ¼ hedefe doÄŸru yavaÅŸÃ§a dÃ¶ndÃ¼r
         if (direction != Vector3.zero)
         {
             Quaternion targetRotation = Quaternion.LookRotation(direction);
             transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * 5f);
         }
 
-        // Düşmanı hedefe doğru hareket ettir
+        // DÃ¼ÅŸmanÄ± hedefe doÄŸru hareket ettir
         transform.Translate(direction.normalized * speed * Time.deltaTime, Space.World);
 
-        // Düşman hedef yol noktasına ulaştığında
+        // DÃ¼ÅŸman hedef yol noktasÄ±na ulaÅŸtÄ±ÄŸÄ±nda
         if (Vector3.Distance(transform.position, targetWaypoint.position) < 0.1f)
         {
-            if (targetWaypoint.CompareTag("point")) // Eğer yol noktası "point" etiketine sahipse
+            if (targetWaypoint.CompareTag("point")) // EÄŸer yol noktasÄ± "point" etiketine sahipse
             {
-                isStopped = true; // Düşman durur
-                StartCoroutine(DamageKaleAfterDelay(stopDuration)); // Belirli bir süre sonra kaleye hasar vermeye başlar
+               
+                isStopped = true; // DÃ¼ÅŸman durur
+                StartCoroutine(DamageKaleAfterDelay(stopDuration)); // Belirli bir sÃ¼re sonra kaleye hasar vermeye baÅŸlar
             }
             else
-            {
-                // Bir sonraki yol noktasına geçer
-                currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length;
+            {        
+                currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length;       // Bir sonraki yol noktasÄ±na geÃ§er
             }
         }
     }
 
-    private IEnumerator DamageKaleAfterDelay(float delay) // Hasar verme işlemini belirli bir süre sonra başlatan coroutine
+    private IEnumerator DamageKaleAfterDelay(float delay) // Hasar verme iÅŸlemini belirli bir sÃ¼re sonra baÅŸlatan coroutine
     {
         yield return new WaitForSeconds(delay);
 
@@ -54,38 +58,29 @@ public class EnemyMovement : MonoBehaviour
             KaleHealth kaleHealth = kale.GetComponent<KaleHealth>();
             if (kaleHealth != null)
             {
-                kaleHealth.TakeDamage(damageAmount); // Her bir düşman sabit hasar verir
+                kaleHealth.TakeDamage(damageAmount); // Her bir dÃ¼ÅŸman sabit hasar verir
             }
         }
         isStopped = false;
     }
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("enemy"))
-        {
-            // Düşmanlar çarpıştığında tepki versin (örn: geri itme)
-            Vector3 pushDirection = collision.transform.position - transform.position;
-            pushDirection = pushDirection.normalized; // Yönü normalize et
-            GetComponent<Rigidbody>().AddForce(-pushDirection * 2f, ForceMode.Impulse);
-        }
-    }
-    //private int GetEnemiesAtPointCount() // Belirli bir noktadaki düşman sayısını hesaplayan fonksiyon
+
+    //private int GetEnemiesAtPointCount() // Belirli bir noktadaki dÃ¼ÅŸman sayÄ±sÄ±nÄ± hesaplayan fonksiyon
     //{
-    //    Collider[] colliders = Physics.OverlapSphere(transform.position, 0.1f); // Düşmanın etrafındaki çarpanları kontrol eder
+    //    Collider[] colliders = Physics.OverlapSphere(transform.position, 0.1f); // DÃ¼ÅŸmanÄ±n etrafÄ±ndaki Ã§arpanlarÄ± kontrol eder
     //    int enemyCount = 0;
     //    foreach (Collider collider in colliders)
     //    {
-    //        if (collider.CompareTag("enemy")) // Eğer çarpan "enemy" etiketine sahipse
+    //        if (collider.CompareTag("enemy")) // EÄŸer Ã§arpan "enemy" etiketine sahipse
     //        {
-    //            enemyCount++; // Düşman sayısını artır
+    //            enemyCount++; // DÃ¼ÅŸman sayÄ±sÄ±nÄ± artÄ±r
     //        }
     //    }
-    //    return enemyCount; // Toplam düşman sayısını döndür
+    //    return enemyCount; // Toplam dÃ¼ÅŸman sayÄ±sÄ±nÄ± dÃ¶ndÃ¼r
     //}
 
-    public void ResetWaypointIndex() // Düşmanın yol noktası indeksini sıfırlayan fonksiyon
+    public void ResetWaypointIndex() // DÃ¼ÅŸmanÄ±n yol noktasÄ± indeksini sÄ±fÄ±rlayan fonksiyon
     {
-        currentWaypointIndex = 0; // Yol noktası indeksini başlangıca ayarla
-        isStopped = false; // Düşmanın durmasını iptal et
+        currentWaypointIndex = 0; // Yol noktasÄ± indeksini baÅŸlangÄ±ca ayarla
+        isStopped = false; // DÃ¼ÅŸmanÄ±n durmasÄ±nÄ± iptal et
     }
 }
