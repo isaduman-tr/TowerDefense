@@ -9,8 +9,8 @@ public class Enemy : MonoBehaviour                   // MonoBehaviour sýnýfýndan
     public GameObject FloatingTextPrefab;
 
     public event Action<GameObject> OnDeath;           // 'Enemy' öldüðünde tetiklenecek bir olay (event) tanýmlar
-    public int StartingHealth = 2;                    // Düþmanýn baþlangýç saðlýðýný 2 olarak ayarlar
-    public int CurrentHealth;                          //the current health the enemy has
+    public float StartingHealth = 2f;                    // Düþmanýn baþlangýç saðlýðýný 2 olarak ayarlar
+    public float CurrentHealth;                          //the current health the enemy has
     public int coinReward;                             // Düþman öldüðünde kazandýracaðý coin miktarý
 
 	private void Awake()
@@ -23,18 +23,16 @@ public class Enemy : MonoBehaviour                   // MonoBehaviour sýnýfýndan
         {
             ShowFloatingText();
         }
-
-        CurrentHealth--;                               // Saðlýk deðerini bir azaltýr
         if (CurrentHealth <= 0)                            // Saðlýk deðeri 0 veya daha düþükse
         {
             OnDeath?.Invoke(gameObject);           // OnDeath olayý varsa tetikler ve gameObject (düþmaný) olayla birlikte gönderir
             Instantiate(deathParticles, transform.position, Quaternion.identity);
             Destroy(gameObject);                  // Düþman oyun nesnesini yok eder
         }
-
         if (CurrentHealth <= 0)
         {
             Die();
+            PanelControl.coinSayisi += 3;
         }
     }
     void ShowFloatingText()
@@ -52,6 +50,62 @@ public class Enemy : MonoBehaviour                   // MonoBehaviour sýnýfýndan
         {
             Debug.LogError("Patlama efekti atanmadý! Lütfen explosionEffect prefab'ýný Inspector'da kontrol et.");
             Destroy(gameObject);
-        }      
+        }
+       
+    }
+
+    public void Hasar()
+    {
+        if (TowerArea.secilenKuleHasarDeðeri > 0)
+        {
+             CurrentHealth-= TowerArea.secilenKuleHasarDeðeri;            // Saðlýk deðerini bir azaltýr
+             Debug.Log("dmg= " + TowerArea.secilenKuleHasarDeðeri);
+            if (CurrentHealth <= 0)                            // Saðlýk deðeri 0 veya daha düþükse
+            {
+                OnDeath?.Invoke(gameObject);           // OnDeath olayý varsa tetikler ve gameObject (düþmaný) olayla birlikte gönderir
+                Instantiate(deathParticles, transform.position, Quaternion.identity);
+                Destroy(gameObject);                  // Düþman oyun nesnesini yok eder
+            }
+            if (CurrentHealth <= 0)
+            {
+                Die();
+            }
+        }
+    }
+    public void Hasar2()
+    {
+        if (TowerArea.secilenKuleHasarDeðeri2 > 0)
+        {
+            CurrentHealth -= TowerArea.secilenKuleHasarDeðeri2;            // Saðlýk deðerini bir azaltýr
+            Debug.Log("dmg2= " + TowerArea.secilenKuleHasarDeðeri2);
+        }
+        if (CurrentHealth <= 0)                            // Saðlýk deðeri 0 veya daha düþükse
+        {
+            OnDeath?.Invoke(gameObject);           // OnDeath olayý varsa tetikler ve gameObject (düþmaný) olayla birlikte gönderir
+            Instantiate(deathParticles, transform.position, Quaternion.identity);
+            Destroy(gameObject);                  // Düþman oyun nesnesini yok eder
+        }
+        if (CurrentHealth <= 0)
+        {
+            Die();
+        }
+    }
+    public void Hasar3()
+    {
+        if (TowerArea.secilenKuleHasarDeðeri3 > 0)
+        {
+            CurrentHealth -= TowerArea.secilenKuleHasarDeðeri3;            // Saðlýk deðerini bir azaltýr
+            Debug.Log("dmg3= " + TowerArea.secilenKuleHasarDeðeri3);
+        }
+        if (CurrentHealth <= 0)                            // Saðlýk deðeri 0 veya daha düþükse
+        {
+            OnDeath?.Invoke(gameObject);           // OnDeath olayý varsa tetikler ve gameObject (düþmaný) olayla birlikte gönderir
+            Instantiate(deathParticles, transform.position, Quaternion.identity);
+            Destroy(gameObject);                  // Düþman oyun nesnesini yok eder
+        }
+        if (CurrentHealth <= 0)
+        {
+            Die();
+        }
     }
 }

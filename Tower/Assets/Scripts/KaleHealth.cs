@@ -2,8 +2,13 @@ using UnityEngine; // Unity motorunun ana sýnýflarýný kullanabilmek için gerekli
 
 public class KaleHealth : MonoBehaviour // MonoBehaviour sýnýfýndan türetilen bir KaleHealth sýnýfý tanýmlar
 {
-    public int health = 300; // Kaleye baþlangýç saðlýðý 300 olarak atanýr
+    public float health = 300; // Kaleye baþlangýç saðlýðý 300 olarak atanýr
 
+    public void KaleStart()
+    {
+        health = PanelControl.casHealth;
+        health *= PanelControl.totalHealth;
+    }
     // Kale hasar aldýðýnda bu fonksiyon çaðrýlýr
     public void TakeDamage(int amount) // Hasar miktarýný belirten bir parametre alýr
     {

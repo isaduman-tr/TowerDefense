@@ -8,10 +8,12 @@ using Unity.VisualScripting;
 // TowerAttack sýnýfý, Unity'nin MonoBehaviour sýnýfýndan türetilmiþ bir sýnýftýr
 public class TowerAttack : MonoBehaviour
 {
+    
+              
     public GameObject shotPrefab; // Atýþ için kullanýlacak prefab nesnesi
     public Transform firePoint; // Atýþýn baþlayacaðý nokta
     public float attackInterval = 1f; // Atýþlar arasýndaki süre
-    public float towerDamage = 1;
+    public static float towerDamage ;
     private float attackTimer; // Atýþlar arasýndaki zamanlayýcý
     private List<GameObject> enemiesInRange = new List<GameObject>(); // Menzile giren düþmanlarýn listesi
 
@@ -23,8 +25,7 @@ public class TowerAttack : MonoBehaviour
     }    
     void Update()
     {
-        towerDamage = TowerArea.attack;
-
+       
         if (enemiesInRange.Count > 0) // Eðer menzilde düþman varsa
         {
             attackTimer -= Time.deltaTime; // Zamanlayýcýyý azalt
@@ -32,6 +33,7 @@ public class TowerAttack : MonoBehaviour
             {
                 FireShot(); // Atýþ yap
                 attackTimer = attackInterval; // Atýþ yaptýktan sonra zamanlayýcýyý sýfýrla
+
             }
         }
     }
@@ -72,8 +74,4 @@ public class TowerAttack : MonoBehaviour
             }
         }
     }
-    public void UpgradeTower()
-    {
-        attackInterval *= 0.8f; // Her yükseltmede %20 hýzlanýyor
-    } 
 }
