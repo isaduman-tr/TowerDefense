@@ -1142,7 +1142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7883ea74fc2c6245ad90c6f723c81aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shotPrefab: {fileID: 4459858467088284797, guid: 0038472f80186974999e8ad219e3a39e, type: 3}
+  shotPrefab: {fileID: 4459858467088284797, guid: bf0654bd0c4f78744adeebb39960f15b, type: 3}
   firePoint: {fileID: 2692651532825167516}
   attackInterval: 1
 --- !u!1 &1895002726477276724
@@ -2059,7 +2059,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7883ea74fc2c6245ad90c6f723c81aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shotPrefab: {fileID: 699877226772922117, guid: 9291c9eab27c03841a7bf278330b7fb3, type: 3}
+  shotPrefab: {fileID: 699877226772922117, guid: 5aab9379585b6da42aa7a98057d9d934, type: 3}
   firePoint: {fileID: 2692651532825167516}
   attackInterval: 1
 --- !u!1 &3403808919406997806
@@ -2927,7 +2927,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7883ea74fc2c6245ad90c6f723c81aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shotPrefab: {fileID: 374342362586980191, guid: 85402660035c10948a3e780d4880d164, type: 3}
+  shotPrefab: {fileID: 4447553042262975455, guid: ee467b3e7fa0e9c438b7b338dd785e9f, type: 3}
   firePoint: {fileID: 2692651532825167516}
   attackInterval: 1
 --- !u!1 &4278689230348645506
@@ -4568,7 +4568,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7883ea74fc2c6245ad90c6f723c81aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shotPrefab: {fileID: 2224258838112456290, guid: 44606bd7f98e7e04dba0cab102579aad, type: 3}
+  shotPrefab: {fileID: 2224258838112456290, guid: eaa6019e014d09d46915a1eba9308540, type: 3}
   firePoint: {fileID: 3967039781716418762}
   attackInterval: 1
 --- !u!1 &5971399996750031537
@@ -4844,7 +4844,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7883ea74fc2c6245ad90c6f723c81aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shotPrefab: {fileID: 699877226772922117, guid: 9291c9eab27c03841a7bf278330b7fb3, type: 3}
+  shotPrefab: {fileID: 699877226772922117, guid: 5aab9379585b6da42aa7a98057d9d934, type: 3}
   firePoint: {fileID: 3967039781716418762}
   attackInterval: 1
 --- !u!1 &6234579080139102378
@@ -5137,7 +5137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7883ea74fc2c6245ad90c6f723c81aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shotPrefab: {fileID: 2224258838112456290, guid: 44606bd7f98e7e04dba0cab102579aad, type: 3}
+  shotPrefab: {fileID: 2224258838112456290, guid: eaa6019e014d09d46915a1eba9308540, type: 3}
   firePoint: {fileID: 2692651532825167516}
   attackInterval: 1
 --- !u!1 &6478566406691742583
@@ -5262,7 +5262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7883ea74fc2c6245ad90c6f723c81aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shotPrefab: {fileID: 374342362586980191, guid: 85402660035c10948a3e780d4880d164, type: 3}
+  shotPrefab: {fileID: 4447553042262975455, guid: ee467b3e7fa0e9c438b7b338dd785e9f, type: 3}
   firePoint: {fileID: 3967039781716418762}
   attackInterval: 1
 --- !u!1 &6641649129711217760
@@ -6578,9 +6578,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towers:
   - {fileID: 1987818288650216941}
+  - {fileID: 5305369294359171547}
+  - {fileID: 1066752831660189811}
   - {fileID: 251804327215957321}
+  - {fileID: 7175823633264237869}
+  - {fileID: 3793481588918853340}
   - {fileID: 7661544502509510923}
+  - {fileID: 7839124756766733563}
+  - {fileID: 3627911423820415886}
   - {fileID: 5854766280548821435}
+  - {fileID: 8185720099893489372}
+  - {fileID: 5419387185219109302}
   towerRange: {fileID: 8578611018421592210}
   attackText: {fileID: 0}
   attackText2: {fileID: 2080003879094311117}

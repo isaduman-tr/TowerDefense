@@ -365,7 +365,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7883ea74fc2c6245ad90c6f723c81aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shotPrefab: {fileID: 374342362586980191, guid: 85402660035c10948a3e780d4880d164, type: 3}
+  shotPrefab: {fileID: 5995460198368481357, guid: 936d7281a023df94293386690a251d5d, type: 3}
   firePoint: {fileID: 8734715361948803856}
   attackInterval: 1
 --- !u!1 &760476885660799876
@@ -2155,7 +2155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7883ea74fc2c6245ad90c6f723c81aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shotPrefab: {fileID: 374342362586980191, guid: 85402660035c10948a3e780d4880d164, type: 3}
+  shotPrefab: {fileID: 5995460198368481357, guid: 936d7281a023df94293386690a251d5d, type: 3}
   firePoint: {fileID: 3309002207123461026}
   attackInterval: 1
 --- !u!1 &3673888807621544037
@@ -6617,6 +6617,11 @@ PrefabInstance:
       addedObject: {fileID: 6276707013197945260}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 063287bcbe7918a44a331763884e7503, type: 3}
+--- !u!1 &6032094698466174636 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8256519321514481103, guid: 063287bcbe7918a44a331763884e7503, type: 3}
+  m_PrefabInstance: {fileID: 2387825588725543779}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6412455749840518166 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8781698488216145781, guid: 063287bcbe7918a44a331763884e7503, type: 3}
@@ -6705,6 +6710,11 @@ PrefabInstance:
 --- !u!4 &2451321183724538426 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1078120201372546593, guid: d27d29f58975d9c4dbc13d863e64b3e1, type: 3}
+  m_PrefabInstance: {fileID: 3238817372054830107}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2976605633697730688 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 413645280669068443, guid: d27d29f58975d9c4dbc13d863e64b3e1, type: 3}
   m_PrefabInstance: {fileID: 3238817372054830107}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3475440165235855167
@@ -6877,6 +6887,11 @@ PrefabInstance:
       addedObject: {fileID: 7864894187518883008}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dd30ca16e7fcb0346b10ce97da6fe817, type: 3}
+--- !u!1 &2667274415759385274 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1432139566234510124, guid: dd30ca16e7fcb0346b10ce97da6fe817, type: 3}
+  m_PrefabInstance: {fileID: 3953022109061726614}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3337131450693793792 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1771088887289018774, guid: dd30ca16e7fcb0346b10ce97da6fe817, type: 3}
@@ -7057,6 +7072,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 182679372304509450, guid: 54b6a2044684f6b4e8b7f5bddb3cfa0e, type: 3}
   m_PrefabInstance: {fileID: 5917506416712759424}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6619699900365015088 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 703354595982717104, guid: 54b6a2044684f6b4e8b7f5bddb3cfa0e, type: 3}
+  m_PrefabInstance: {fileID: 5917506416712759424}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6026451069545347558
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7227,6 +7247,11 @@ PrefabInstance:
       addedObject: {fileID: 1239957941635888897}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 366661543900649418eb20282bf7ef06, type: 3}
+--- !u!1 &8401963742055331395 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2570023011709605375, guid: 366661543900649418eb20282bf7ef06, type: 3}
+  m_PrefabInstance: {fileID: 6283449270451086268}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &9210447477895539961 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2945740070373003077, guid: 366661543900649418eb20282bf7ef06, type: 3}
@@ -7312,6 +7337,11 @@ PrefabInstance:
       addedObject: {fileID: 6212869842363163535}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3403ae6e2f5b52846955dec5d24188f3, type: 3}
+--- !u!1 &6001503524735593091 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 801300056354678990, guid: 3403ae6e2f5b52846955dec5d24188f3, type: 3}
+  m_PrefabInstance: {fileID: 6365650672852648525}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6341718104236552249 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 23954559390265972, guid: 3403ae6e2f5b52846955dec5d24188f3, type: 3}
@@ -7402,6 +7432,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1238892707322837045, guid: 9f3b58f54f111b94fb8f1e2f759c917f, type: 3}
   m_PrefabInstance: {fileID: 7380126860567836069}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8940143003503826730 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1908047359883666063, guid: 9f3b58f54f111b94fb8f1e2f759c917f, type: 3}
+  m_PrefabInstance: {fileID: 7380126860567836069}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8528383387432317551
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7482,6 +7517,11 @@ PrefabInstance:
       addedObject: {fileID: 3430054924579448664}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f3289f0236b68de4f99519cd6c4173b9, type: 3}
+--- !u!1 &7022188060165325078 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1668923774027314041, guid: f3289f0236b68de4f99519cd6c4173b9, type: 3}
+  m_PrefabInstance: {fileID: 8528383387432317551}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7653870287352798124 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2045450034608761283, guid: f3289f0236b68de4f99519cd6c4173b9, type: 3}
@@ -7618,9 +7658,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towers:
   - {fileID: 1947753983904445122}
+  - {fileID: 6001503524735593091}
+  - {fileID: 2667274415759385274}
   - {fileID: 4519240895906154128}
+  - {fileID: 6032094698466174636}
+  - {fileID: 6619699900365015088}
   - {fileID: 8082813987247528959}
+  - {fileID: 7022188060165325078}
+  - {fileID: 8401963742055331395}
   - {fileID: 6974671162465036212}
+  - {fileID: 8940143003503826730}
+  - {fileID: 2976605633697730688}
   towerRange: {fileID: 5311567314402190374}
   attackText: {fileID: 2496178342788108084}
   attackText2: {fileID: 0}

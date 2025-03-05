@@ -71,7 +71,7 @@ public class TowerArea : MonoBehaviour
             case 0: 
                 if (PanelControl.productionCount>= 3)
                 {
-                    attackText.text = "x1.0";cooldownText.text = "1.0sn"; towers[0].SetActive(true);
+                    attackText.text = "x1.0";cooldownText.text = "1.0sn"; towers[PanelControl.evolveCount - 2].SetActive(true);
                     kuleHasarDeðeri = kuleler[kuleNumarasi, 1];
                     secilenKuleHasarDeðeri = kuleHasarDeðeri * PanelControl.totalDmg;
                     attackText.text = "x" + secilenKuleHasarDeðeri.ToString("F1");
@@ -81,7 +81,7 @@ public class TowerArea : MonoBehaviour
             case 1:
                 if (PanelControl.productionCount >= 3)
                 {
-                    attackText.text = "x5.0"; cooldownText.text = "5.0sn"; towers[1].SetActive(true);
+                    attackText.text = "x5.0"; cooldownText.text = "5.0sn"; towers[PanelControl.evolveCount + 1].SetActive(true);
                     kuleHasarDeðeri = kuleler[kuleNumarasi, 1];
                     secilenKuleHasarDeðeri = kuleHasarDeðeri * PanelControl.totalDmg;
                     attackText.text = "x" + secilenKuleHasarDeðeri.ToString("F1");
@@ -91,7 +91,7 @@ public class TowerArea : MonoBehaviour
             case 2:
                 if (PanelControl.productionCount >= 3)
                 {
-                    attackText.text = "x3.0"; cooldownText.text = "1.0sn"; towers[2].SetActive(true);
+                    attackText.text = "x3.0"; cooldownText.text = "1.0sn"; towers[PanelControl.evolveCount + 4].SetActive(true);
                     kuleHasarDeðeri = kuleler[kuleNumarasi, 1];
                     secilenKuleHasarDeðeri = kuleHasarDeðeri * PanelControl.totalDmg;
                     attackText.text = "x" + secilenKuleHasarDeðeri.ToString("F1");
@@ -102,7 +102,7 @@ public class TowerArea : MonoBehaviour
             case 3:
                 if (PanelControl.productionCount >= 3)
                 {
-                    attackText.text = "x9.0"; cooldownText.text = "5.0sn"; towers[3].SetActive(true);
+                    attackText.text = "x9.0"; cooldownText.text = "5.0sn"; towers[PanelControl.evolveCount + 7].SetActive(true);
                     kuleHasarDeðeri = kuleler[kuleNumarasi, 1];
                     secilenKuleHasarDeðeri = kuleHasarDeðeri * PanelControl.totalDmg;
                     attackText.text = "x" + secilenKuleHasarDeðeri.ToString("F1");
@@ -113,7 +113,7 @@ public class TowerArea : MonoBehaviour
             case 4:
                 if (PanelControl.productionCount >= 3)
                 {
-                    attackText2.text = "x1.0"; cooldownText.text = "1.0sn"; towers[0].SetActive(true);
+                    attackText2.text = "x1.0"; cooldownText.text = "1.0sn"; towers[PanelControl.evolveCount - 2].SetActive(true);
                     kuleHasarDeðeri = kuleler[kuleNumarasi, 1];
                     secilenKuleHasarDeðeri2 = kuleHasarDeðeri * PanelControl.totalDmg;
                     attackText2.text = "x" + secilenKuleHasarDeðeri2.ToString("F1");
@@ -124,7 +124,7 @@ public class TowerArea : MonoBehaviour
             case 5:
                 if (PanelControl.productionCount >= 3)
                 {
-                    attackText2.text = "x5.0"; cooldownText.text = "5.0sn"; towers[1].SetActive(true);
+                    attackText2.text = "x5.0"; cooldownText.text = "5.0sn"; towers[PanelControl.evolveCount + 1].SetActive(true);
                     kuleHasarDeðeri = kuleler[kuleNumarasi, 1];
                     secilenKuleHasarDeðeri2 = kuleHasarDeðeri * PanelControl.totalDmg;
                     attackText2.text = "x" + secilenKuleHasarDeðeri2.ToString("F1");
@@ -135,7 +135,7 @@ public class TowerArea : MonoBehaviour
             case 6:
                 if (PanelControl.productionCount >= 3)
                 {
-                    attackText2.text = "x3.0"; cooldownText.text = "1.0sn"; towers[2].SetActive(true);
+                    attackText2.text = "x3.0"; cooldownText.text = "1.0sn"; towers[PanelControl.evolveCount + 4].SetActive(true);
                     kuleHasarDeðeri = kuleler[kuleNumarasi, 1];
                     secilenKuleHasarDeðeri2 = kuleHasarDeðeri * PanelControl.totalDmg;
                     attackText2.text = "x" + secilenKuleHasarDeðeri2.ToString("F1");
@@ -146,7 +146,7 @@ public class TowerArea : MonoBehaviour
             case 7:
                 if (PanelControl.productionCount >= 3)
                 {
-                    attackText2.text = "x9.0"; cooldownText.text = "5.0sn"; towers[3].SetActive(true);
+                    attackText2.text = "x9.0"; cooldownText.text = "5.0sn"; towers[PanelControl.evolveCount + 7].SetActive(true);
                     kuleHasarDeðeri = kuleler[kuleNumarasi, 1];
                     secilenKuleHasarDeðeri2 = kuleHasarDeðeri * PanelControl.totalDmg;
                     attackText2.text = "x" + secilenKuleHasarDeðeri2.ToString("F1");
@@ -157,7 +157,7 @@ public class TowerArea : MonoBehaviour
             case 8:
                 if (PanelControl.productionCount >= 3)
                 {
-                    attackText3.text = "x1.0"; cooldownText.text = "1.0sn"; towers[0].SetActive(true);
+                    attackText3.text = "x1.0"; cooldownText.text = "1.0sn"; towers[PanelControl.evolveCount - 2].SetActive(true);
                     kuleHasarDeðeri = kuleler[kuleNumarasi, 1];
                     secilenKuleHasarDeðeri3 = kuleHasarDeðeri * PanelControl.totalDmg;
                     attackText3.text = "x" + secilenKuleHasarDeðeri3.ToString("F1");
@@ -168,7 +168,7 @@ public class TowerArea : MonoBehaviour
             case 9:
                 if (PanelControl.productionCount >= 3)
                 {
-                    attackText3.text = "x5.0"; cooldownText.text = "5.0sn"; towers[1].SetActive(true);
+                    attackText3.text = "x5.0"; cooldownText.text = "5.0sn"; towers[PanelControl.evolveCount + 1].SetActive(true);
                     kuleHasarDeðeri = kuleler[kuleNumarasi, 1];
                     secilenKuleHasarDeðeri3 = kuleHasarDeðeri * PanelControl.totalDmg;
                     attackText3.text = "x" + secilenKuleHasarDeðeri3.ToString("F1");
@@ -179,7 +179,7 @@ public class TowerArea : MonoBehaviour
             case 10:
                 if (PanelControl.productionCount >= 3)
                 {
-                    attackText3.text = "x3.0"; cooldownText.text = "1.0sn"; towers[2].SetActive(true);
+                    attackText3.text = "x3.0"; cooldownText.text = "1.0sn"; towers[PanelControl.evolveCount + 4].SetActive(true);
                     kuleHasarDeðeri = kuleler[kuleNumarasi, 1];
                     secilenKuleHasarDeðeri3 = kuleHasarDeðeri * PanelControl.totalDmg;
                     attackText3.text = "x" + secilenKuleHasarDeðeri3.ToString("F1");
@@ -190,7 +190,7 @@ public class TowerArea : MonoBehaviour
             case 11:
                 if (PanelControl.productionCount >= 3)
                 {
-                    attackText3.text = "x9.0"; cooldownText.text = "5.0sn"; towers[3].SetActive(true);
+                    attackText3.text = "x9.0"; cooldownText.text = "5.0sn"; towers[PanelControl.evolveCount + 7].SetActive(true);
                     kuleHasarDeðeri = kuleler[kuleNumarasi, 1];
                     secilenKuleHasarDeðeri3 = kuleHasarDeðeri * PanelControl.totalDmg;
                     attackText3.text = "x" + secilenKuleHasarDeðeri3.ToString("F1");

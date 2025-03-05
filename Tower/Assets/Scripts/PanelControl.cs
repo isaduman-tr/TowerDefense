@@ -20,7 +20,7 @@ public class PanelControl : MonoBehaviour
     private Vector3 defaultScale = new Vector3(1f, 1f, 1f);
     private Vector3 highlightedScale = new Vector3(1.4f, 1.4f, 4f); // Buton büyüklüðü
 
-    public static int coinSayisi=0;
+    public static int coinSayisi=10000000;
     public TextMeshProUGUI coinText;
     public static int diamondSayisi=0;
     public TextMeshProUGUI diamondText;
@@ -47,7 +47,7 @@ public class PanelControl : MonoBehaviour
     public TextMeshProUGUI castleHealth;
     public TextMeshProUGUI castleLevel;
     public TextMeshProUGUI castleCost;
-    private float proTime=0.2f;
+    private float proTime=5.2f;
     private int proLevel=1;
     public static float casHealth=1000;
     private int casLevel=1;
@@ -67,7 +67,7 @@ public class PanelControl : MonoBehaviour
     public GameObject tower3Button, tower3Attack, tower3CoolDown, tower3Lv1, tower3Lv2, tower3Lv3;
     private int tower4=7000, tower4dmg=9;
     public GameObject tower4Button, tower4Attack, tower4CoolDown, tower4Lv1, tower4Lv2, tower4Lv3;
-    private int evolveCount=2;
+    public static int evolveCount=2;
 
     public List<GameObject> deckPrefabs;  // 12 kartlýk prefab listesi (Inspector'dan ekle)
     public Transform contentTransform;    // Scroll View içindeki Content objesi
@@ -318,33 +318,28 @@ public class PanelControl : MonoBehaviour
     }
     public void EvolvePlus()
     {
-        Debug.Log("1");
         if (grup1Aktif)
         {
             grup1Aktif = false;
             grup2Aktif = true;
             grup3Aktif = false;
-            Debug.Log("2");
         }
         else if (grup2Aktif)
         {
             grup1Aktif = false;
             grup2Aktif = false;
             grup3Aktif = true;
-            Debug.Log("3");
         }
         else if (grup3Aktif)
         {
             grup1Aktif = true;
             grup2Aktif = false;
             grup3Aktif = false;
-            Debug.Log("4");
         }
 
         // Dizideki elemanlarý aktif veya pasif yap
         for (int i = 0; i < 35; i++)
         {
-            Debug.Log("5");
             if (grup1Aktif && i % 3 == 0)
             {
                 pictures[i].SetActive(true); // Ýlk grup elemanlarý aktif
@@ -380,6 +375,7 @@ public class PanelControl : MonoBehaviour
     }
     public void StartBattle()
     {
+
         exitButton.gameObject.SetActive(true);
         battle = true;
         battleButton.SetActive(false);
@@ -527,5 +523,6 @@ public class PanelControl : MonoBehaviour
     public void ExitGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Time.timeScale = 1f;
     }
 }
