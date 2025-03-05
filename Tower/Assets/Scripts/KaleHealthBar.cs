@@ -8,15 +8,15 @@ public class KaleHealthBar : MonoBehaviour
     public float smoothSpeed = 5f;      // Akýcý geçiþ hýzý
 
     private float targetHealth;
-    private int maxHealth;
+    private float maxHealth;
 
     void Start()
     {
         if (kaleHealth != null && healthBarImage != null)
         {
-            maxHealth = kaleHealth.health; // Baþlangýçta maksimum saðlýk deðerini al
+            maxHealth = kaleHealth.health ; // Baþlangýçta maksimum saðlýk deðerini al
             healthBarImage.fillAmount = 1f; // Saðlýk çubuðunu tam dolu olarak baþlat
-            targetHealth = kaleHealth.health; // Hedef saðlýk deðerini güncelle
+            targetHealth = kaleHealth.health ; // Hedef saðlýk deðerini güncelle
         }
     }
 

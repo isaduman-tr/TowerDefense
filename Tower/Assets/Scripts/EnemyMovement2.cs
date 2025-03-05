@@ -12,7 +12,6 @@ public class EnemyMovement2 : MonoBehaviour
 
     public GameObject enemyPrefab;
     public int damageAmount = 1;
-    private bool isStopped = false;
 
     private void Start()
     {       

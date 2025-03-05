@@ -17,8 +17,8 @@ public class GameManager : MonoBehaviour
     public void AddCoins(int amount)
     {
         totalCoins += amount;
-        Debug.Log("Toplam Coin: " + totalCoins);
+        //Debug.Log("Toplam Coin: " + totalCoins);
     }
 
-   
+
 }

@@ -17,11 +17,15 @@ public class EnemyManager : MonoBehaviour
     void Start() // Unity'nin baþlangýç fonksiyonu
     {
         enemyPrefabs = new GameObject[] { enemy1Prefab, enemy2Prefab, enemy3Prefab }; // Düþman prefab dizisini doldurur
-        StartCoroutine(SpawnEnemies()); // Düþmanlarý spawn etmeye baþlar
+       
     }
-
+    public void Spawn()
+    {
+         StartCoroutine(SpawnEnemies()); // Düþmanlarý spawn etmeye baþlar
+    }
     IEnumerator SpawnEnemies() // Düþmanlarý sýrayla spawn eden bir coroutine
     {
+        yield return new WaitForSeconds(2f); // 2 saniye bekle
         while (currentEnemyType < enemyPrefabs.Length) // Tüm düþman türleri spawn edilene kadar devam eder
         {
             yield return SpawnEnemyType(enemyPrefabs[currentEnemyType], enemyCounts[currentEnemyType]); // Belirli türde düþman spawn eder

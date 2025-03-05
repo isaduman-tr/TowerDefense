@@ -8,7 +8,7 @@ public class EnemyHealthBar : MonoBehaviour
     public Canvas healthBarCanvas;       // Sadece saðlýk barýnýn bulunduðu Canvas
     public float smoothSpeed = 5f;       // Akýcý geçiþ hýzý
     private float targetHealth;
-    private int maxHealth;
+    private float maxHealth;
     private Transform mainCamera;
 
     void Start()
@@ -26,7 +26,7 @@ public class EnemyHealthBar : MonoBehaviour
     {
         if (enemy != null && healthBarImage != null)
         {
-            targetHealth = (float)enemy.CurrentHealth / maxHealth;
+            targetHealth = enemy.CurrentHealth / maxHealth;
             healthBarImage.fillAmount = Mathf.Lerp(healthBarImage.fillAmount, targetHealth, smoothSpeed * Time.deltaTime);
             UpdateHealthBarColor();
             FaceCamera();
