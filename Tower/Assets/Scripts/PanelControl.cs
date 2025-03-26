@@ -19,6 +19,7 @@ public class PanelControl : MonoBehaviour
     public GameObject[] pictures;
     private Vector3 defaultScale = new Vector3(1f, 1f, 1f);
     private Vector3 highlightedScale = new Vector3(1.4f, 1.4f, 4f); // Buton büyüklüðü
+    public Animator mainFloorAnim;
 
     public static int coinSayisi=10000000;
     public TextMeshProUGUI coinText;
@@ -47,7 +48,7 @@ public class PanelControl : MonoBehaviour
     public TextMeshProUGUI castleHealth;
     public TextMeshProUGUI castleLevel;
     public TextMeshProUGUI castleCost;
-    private float proTime=5.2f;
+    private float proTime=0.2f;
     private int proLevel=1;
     public static float casHealth=1000;
     private int casLevel=1;
@@ -375,7 +376,7 @@ public class PanelControl : MonoBehaviour
     }
     public void StartBattle()
     {
-
+        mainFloorAnim.SetTrigger("floorTrig");
         exitButton.gameObject.SetActive(true);
         battle = true;
         battleButton.SetActive(false);
