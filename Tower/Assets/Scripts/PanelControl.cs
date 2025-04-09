@@ -48,7 +48,7 @@ public class PanelControl : MonoBehaviour
     public TextMeshProUGUI castleHealth;
     public TextMeshProUGUI castleLevel;
     public TextMeshProUGUI castleCost;
-    private float proTime=0.2f;
+    private float proTime=5.2f;
     private int proLevel=1;
     public static float casHealth=1000;
     private int casLevel=1;
