@@ -42,7 +42,8 @@ public class TowerArea : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit) && hit.transform == transform)
             {
-                if (towerchoose)    //Kule seçimi yaptðýmýz paneli açmak için kullandýðýmýz döngü
+                if (
+                    )    //Kule seçimi yaptðýmýz paneli açmak için kullandýðýmýz döngü
                 {
                     Transform panel = transform.Find("TowerPanel"); // Kendi panelini bul
                     if (panel != null)
