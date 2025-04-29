@@ -12,6 +12,8 @@ TagManager:
   - shot
   - Tower
   - waitingPoint
+  - Floor
+  - WaypointHolder
   layers:
   - Default
   - TransparentFX

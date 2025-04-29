@@ -1,56 +1,119 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyMovement2 : MonoBehaviour
 {
-    
-    public Transform[] waypoints = new Transform[4];    // 4 nokta için bir liste oluþturun 
-    public Transform[] randomPoints = new Transform[16]; // 16 nokta için bir liste oluþturun 
-    public float speed = 2.0f;  // Hareket hýzý
-    private int currentWaypointIndex = 0;   // Þu anki hedef nokta
-
     public GameObject enemyPrefab;
     public int damageAmount = 1;
 
-    private void Start()
-    {       
-        currentWaypointIndex = 0;   // Ýlk hedef nokta olarak 0. nokta seçilir     
-        StartCoroutine(MoveToWaypoint());   // Hareketi baþlat
+    private Transform[] firstPathPoints;       // Ä°lk 4 sabit nokta
+    private Transform[] randomTargetPoints;    // 4'ten sonraki 16 rastgele hedef
+
+    private int currentIndex = 0;
+    private bool goingToRandomPoint = false;
+    private Transform randomTarget;
+    public float speed = 2f;
+    private bool saldiriBasladi = false; // ðŸ”¥ kontrol iÃ§in flag
+    public Transform waypointHolder; // Bu dÃ¼ÅŸmana Ã¶zel waypoint objesi
+
+
+
+    void Start()
+    {
+        // WaypointHolder tag'lÄ± objeyi bul
+       // GameObject waypointHolder = GameObject.FindGameObjectWithTag("WaypointHolder");
+
+        if (waypointHolder != null)
+        {
+            int total = waypointHolder.transform.childCount;
+
+            // Ä°lk 4 noktayÄ± al
+            firstPathPoints = new Transform[4];
+            for (int i = 0; i < 4; i++)
+            {
+                firstPathPoints[i] = waypointHolder.transform.GetChild(i);
+            }
+
+            // Geriye kalanlarÄ± rastgele hedefler olarak ayarla
+            int randomCount = total - 4;
+            randomTargetPoints = new Transform[randomCount];
+            for (int i = 0; i < randomCount; i++)
+            {
+                randomTargetPoints[i] = waypointHolder.transform.GetChild(i + 4);
+            }
+        }
+        else
+        {
+            Debug.LogError("WaypointHolder tag'lÄ± obje bulunamadÄ±!");
+        }
     }
 
-    private IEnumerator MoveToWaypoint()
+    void Update()
     {
-        
-        while (currentWaypointIndex < waypoints.Length)     // 4 nokta ziyaret edene kadar hareket et
-        {      
-            Transform targetWaypoint = waypoints[currentWaypointIndex];     // Hedef nokta olarak currentWaypointIndex'i seç
-                                                                            // 
-            while (Vector3.Distance(transform.position, targetWaypoint.position) > 0.1f)    // Hedef nokta doðru yönde hareket et
+        if (firstPathPoints == null || randomTargetPoints == null)
+            return;
+
+        if (!goingToRandomPoint && currentIndex < firstPathPoints.Length)
+        {
+            MoveTowards(firstPathPoints[currentIndex]);
+
+            if (Vector3.Distance(transform.position, firstPathPoints[currentIndex].position) < 0.2f)
             {
-                float step = speed * Time.deltaTime;
-                transform.position = Vector3.MoveTowards(transform.position, targetWaypoint.position, step);
-                transform.rotation = Quaternion.LookRotation(targetWaypoint.position - transform.position); // Düþmanlarýn yönünü güncelle
-                yield return null;
-            }          
-            currentWaypointIndex++; // Sonraki hedef nokta olarak currentWaypointIndex + 1'i seç
-
-            if (currentWaypointIndex == waypoints.Length)   // 4. noktaya geldikten sonra random bir noktaya git
-            {         
-                Transform randomPoint = randomPoints[Random.Range(0, randomPoints.Length)]; // Random bir nokta seç
-
-                while (Vector3.Distance(transform.position, randomPoint.position) > 0.1f)   // Random noktaya git
+                currentIndex++;
+                if (currentIndex >= firstPathPoints.Length)
                 {
-                    float step = speed * Time.deltaTime;
-                    transform.position = Vector3.MoveTowards(transform.position, randomPoint.position, step);
-                    transform.rotation = Quaternion.LookRotation(randomPoint.position - transform.position); // Düþmanlarýn yönünü güncelle
-                    yield return null;
+                    // Ä°lk 4 geÃ§ildi, rastgele hedef seÃ§
+                    goingToRandomPoint = true;
+                    randomTarget = randomTargetPoints[Random.Range(0, randomTargetPoints.Length)];
                 }
-                InvokeRepeating("Saldiri", 1f, 1f);
-                yield break;
+            }
+        }
+        else if (goingToRandomPoint && randomTarget != null)
+        {
+            MoveTowards(randomTarget);
+
+            if (Vector3.Distance(transform.position, randomTarget.position) < 0.2f && !saldiriBasladi)
+            {
+                Debug.Log("DÃ¼ÅŸman rastgele hedefe ulaÅŸtÄ±");
+                saldiriBasladi = true;
+                InvokeRepeating("Saldiri", 1f, 1f);   
             }
         }
     }
+    void MoveTowards(Transform target)
+    {
+        Vector3 dir = (target.position - transform.position).normalized;
+        transform.position += dir * speed * Time.deltaTime;
+        Vector3 lookDir = new Vector3(dir.x, 0f, dir.z);
+        if (lookDir != Vector3.zero)
+        {
+            Quaternion toRotation = Quaternion.LookRotation(lookDir);
+            transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, Time.deltaTime * 5f);
+        }
+
+    }
+    public void InitializeWaypoints(Transform holder)
+    {
+        waypointHolder = holder;
+
+        int total = waypointHolder.childCount;
+
+        firstPathPoints = new Transform[4];
+        for (int i = 0; i < 4; i++)
+        {
+            firstPathPoints[i] = waypointHolder.GetChild(i);
+        }
+
+        int randomCount = total - 4;
+        randomTargetPoints = new Transform[randomCount];
+        for (int i = 0; i < randomCount; i++)
+        {
+            randomTargetPoints[i] = waypointHolder.GetChild(i + 4);
+        }
+    }
+
+
     public void Saldiri()
     {
         GameObject[] kaleObjects = GameObject.FindGameObjectsWithTag("kale");
@@ -59,7 +122,7 @@ public class EnemyMovement2 : MonoBehaviour
             KaleHealth kaleHealth = kale.GetComponent<KaleHealth>();
             if (kaleHealth != null)
             {
-                kaleHealth.TakeDamage(damageAmount); // Her bir düþman sabit hasar verir
+                kaleHealth.TakeDamage(damageAmount); // Her bir dÃ¼ÅŸman sabit hasar verir
             }
         }
     }

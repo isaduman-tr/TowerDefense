@@ -7,6 +7,11 @@ public class EnemyManager : MonoBehaviour
     public GameObject enemy2Prefab;
     public GameObject enemy3Prefab;
     public Transform spawnPoint; // Düþmanlarýn ortaya çýkacaðý konumu belirten bir Transform
+    public Transform spawnPoint2; // Düþmanlarýn ortaya çýkacaðý konumu belirten bir Transform
+    public Transform waypointHolder1;
+    public Transform waypointHolder2;
+
+
 
     private int currentEnemyType = 0; // Sýrasýyla hangi düþman türünün spawn edileceðini belirler
     private int[] enemyCounts = { 3, 4, 5 }; // Her düþman türünden kaç tane spawn edileceðini belirten dizisi
@@ -19,7 +24,7 @@ public class EnemyManager : MonoBehaviour
         enemyPrefabs = new GameObject[] { enemy1Prefab, enemy2Prefab, enemy3Prefab }; // Düþman prefab dizisini doldurur
        
     }
-    public void Spawn()
+    public void SpawnEnemy()
     {
          StartCoroutine(SpawnEnemies()); // Düþmanlarý spawn etmeye baþlar
     }
@@ -36,14 +41,40 @@ public class EnemyManager : MonoBehaviour
 
     IEnumerator SpawnEnemyType(GameObject enemyPrefab, int count) // Belirli bir türde ve sayýda düþman spawn eden coroutine
     {
-        for (int i = 0; i < count; i++) // Belirtilen sayýda döngü yapar
+        for (int i = 0; i < count; i++)
         {
-            GameObject newEnemy = Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity); // Yeni düþmaný oluþturur
-            newEnemy.GetComponent<Enemy>().OnDeath += HandleEnemyDeath; // Düþman öldüðünde bir olay iþleyici ekler
-            currentEnemies.Add(newEnemy); // Yeni düþmaný aktif listeye ekler
-            yield return new WaitForSeconds(1f); // Spawnlar arasýnda 1 saniye bekler
+            Transform spawnPos;
+            Transform assignedWaypointHolder;
+
+            if (currentEnemyType == 0)
+            {
+                spawnPos = spawnPoint;
+                assignedWaypointHolder = waypointHolder1; // 1. yol
+            }
+            else if (currentEnemyType == 1)
+            {
+                spawnPos = spawnPoint2;
+                assignedWaypointHolder = waypointHolder2; // 2. yol
+            }
+            else
+            {
+                bool fromFirst = i % 2 == 0;
+                spawnPos = fromFirst ? spawnPoint : spawnPoint2;
+                assignedWaypointHolder = fromFirst ? waypointHolder1 : waypointHolder2;
+            }
+
+            GameObject newEnemy = Instantiate(enemyPrefab, spawnPos.position, Quaternion.identity);
+            newEnemy.GetComponent<Enemy>().OnDeath += HandleEnemyDeath;
+
+            // Burada güzergahý atýyoruz:
+            newEnemy.GetComponent<EnemyMovement2>().InitializeWaypoints(assignedWaypointHolder);
+
+            currentEnemies.Add(newEnemy);
+            yield return new WaitForSeconds(1f);
         }
     }
+
+
 
     private void HandleEnemyDeath(GameObject enemy) // Düþman öldüðünde çaðrýlan metod
     {

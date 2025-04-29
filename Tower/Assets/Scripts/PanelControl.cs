@@ -77,9 +77,35 @@ public class PanelControl : MonoBehaviour
     public static float totalHealth = 1.0f;
     public TextMeshProUGUI totalHealthText;
 
-    public EnemyManager enemySpawn;
+    //public EnemyManager enemySpawn;
     public KaleHealth KaleTotalHealth;
 
+    public static int levelCount = 1;
+    public GameObject[] levels; // Level1...Level13 objeleri buraya atanacak
+
+    public void CallSpawnOnActiveLevel()
+    {
+        foreach (GameObject level in levels)
+        {
+            if (level.activeSelf)
+            {
+                EnemyManager manager = level.GetComponentInChildren<EnemyManager>();
+
+                if (manager != null)
+                {
+                    // private fonksiyonu reflection ile çaðýr
+                    manager.Invoke("SpawnEnemy", 0f);
+                    Debug.Log($"{level.name} içindeki EnemyManager tetiklendi.");
+                }
+                else
+                {
+                    Debug.LogWarning($"{level.name} içinde EnemyManager bulunamadý.");
+                }
+
+                break; // sadece aktif olan level için çalýþmalý
+            }
+        }
+    }
     private void Start()
     {
         tower2ButL.interactable = false;
@@ -103,6 +129,21 @@ public class PanelControl : MonoBehaviour
         foreach (Button btn in battlePassButtonsR)
             LockButton(btn, lockedRight);
         unlockButton.onClick.AddListener(UnlockButtons);
+
+        // Eðer mainFloorAnim atanmadýysa sahneden bul
+        if (mainFloorAnim == null)
+        {
+            GameObject obj = GameObject.FindGameObjectWithTag("Floor");
+            if (obj != null)
+            {
+                mainFloorAnim = obj.GetComponent<Animator>();
+            }
+            else
+            {
+                Debug.LogWarning("Floor tag'lý obje bulunamadý!");
+            }
+        }
+
     }
     private void Update()
     {
@@ -383,7 +424,7 @@ public class PanelControl : MonoBehaviour
         slider.gameObject.SetActive(true);
         panels[2].SetActive(false);
         buttonPanel.SetActive(false);
-        enemySpawn.Spawn();
+        //enemySpawn.Spawn();
         KaleTotalHealth.KaleStart();
     }
 
