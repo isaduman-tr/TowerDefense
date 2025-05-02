@@ -62163,7 +62163,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!95 &942724555
 Animator:
   serializedVersion: 7
@@ -62226,6 +62226,7 @@ MonoBehaviour:
   spawnPoint2: {fileID: 1944830614}
   waypointHolder1: {fileID: 260512072}
   waypointHolder2: {fileID: 203917209}
+  enemyCounts: 030000000400000005000000
 --- !u!1001 &943735510
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -64151,7 +64152,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!95 &976788971
 Animator:
   serializedVersion: 7
@@ -64214,6 +64215,7 @@ MonoBehaviour:
   spawnPoint2: {fileID: 13260425}
   waypointHolder1: {fileID: 828665977}
   waypointHolder2: {fileID: 1554127589}
+  enemyCounts: 030000000400000005000000
 --- !u!1001 &978295761
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -72098,7 +72100,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!95 &1064421932
 Animator:
   serializedVersion: 7
@@ -72159,6 +72161,7 @@ MonoBehaviour:
   spawnPoint2: {fileID: 2136848181}
   waypointHolder1: {fileID: 2129363570}
   waypointHolder2: {fileID: 2129363570}
+  enemyCounts: 030000000400000005000000
 --- !u!1001 &1065073086
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -91699,6 +91702,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1064421933}
     m_Modifications:
+    - target: {fileID: 295112784919161154, guid: 9dda8f0e2f9abe84ea9fe86eadfb4773, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1104405756758209528, guid: 9dda8f0e2f9abe84ea9fe86eadfb4773, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -109689,7 +109696,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!95 &1620926712
 Animator:
   serializedVersion: 7
@@ -109752,6 +109759,7 @@ MonoBehaviour:
   spawnPoint2: {fileID: 795904336}
   waypointHolder1: {fileID: 1081011490}
   waypointHolder2: {fileID: 188610422}
+  enemyCounts: 030000000400000005000000
 --- !u!1 &1622295239
 GameObject:
   m_ObjectHideFlags: 0
@@ -115191,7 +115199,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!95 &1687851489
 Animator:
   serializedVersion: 7
@@ -115251,8 +115259,9 @@ MonoBehaviour:
   enemy3Prefab: {fileID: 5744452293922124435, guid: 16288e76147d2214a894f20c48b20988, type: 3}
   spawnPoint: {fileID: 1294267839}
   spawnPoint2: {fileID: 1294267839}
-  waypointHolder1: {fileID: 0}
-  waypointHolder2: {fileID: 0}
+  waypointHolder1: {fileID: 60919725}
+  waypointHolder2: {fileID: 60919725}
+  enemyCounts: 030000000400000005000000
 --- !u!1001 &1689424635
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -116083,7 +116092,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!95 &1705014840
 Animator:
   serializedVersion: 7
@@ -116145,6 +116154,7 @@ MonoBehaviour:
   spawnPoint2: {fileID: 1984041216}
   waypointHolder1: {fileID: 0}
   waypointHolder2: {fileID: 0}
+  enemyCounts: 030000000400000005000000
 --- !u!1001 &1705920051
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -124853,7 +124863,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!95 &1817195452
 Animator:
   serializedVersion: 7
@@ -124916,6 +124926,7 @@ MonoBehaviour:
   spawnPoint2: {fileID: 365758092}
   waypointHolder1: {fileID: 1805751080}
   waypointHolder2: {fileID: 1846433968}
+  enemyCounts: 030000000400000005000000
 --- !u!1001 &1818527516
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -134851,7 +134862,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!95 &1975493859
 Animator:
   serializedVersion: 7
@@ -134913,6 +134924,7 @@ MonoBehaviour:
   spawnPoint2: {fileID: 711396981}
   waypointHolder1: {fileID: 0}
   waypointHolder2: {fileID: 0}
+  enemyCounts: 030000000400000005000000
 --- !u!4 &1976399735 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d6f0b21f8c3724142aac80194d5323b5, type: 3}
@@ -137489,7 +137501,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2007444509
 Transform:
   m_ObjectHideFlags: 0
@@ -137551,6 +137563,7 @@ MonoBehaviour:
   spawnPoint2: {fileID: 116695857}
   waypointHolder1: {fileID: 195430777}
   waypointHolder2: {fileID: 195430777}
+  enemyCounts: 030000000400000005000000
 --- !u!1 &2008520701
 GameObject:
   m_ObjectHideFlags: 0
@@ -138165,7 +138178,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!95 &2012673050
 Animator:
   serializedVersion: 7
@@ -138228,6 +138241,7 @@ MonoBehaviour:
   spawnPoint2: {fileID: 1866186501}
   waypointHolder1: {fileID: 875535317}
   waypointHolder2: {fileID: 578708402}
+  enemyCounts: 030000000400000005000000
 --- !u!1 &2013754962
 GameObject:
   m_ObjectHideFlags: 0
@@ -143120,7 +143134,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!95 &2070895653
 Animator:
   serializedVersion: 7
@@ -143182,6 +143196,7 @@ MonoBehaviour:
   spawnPoint2: {fileID: 1607681764}
   waypointHolder1: {fileID: 0}
   waypointHolder2: {fileID: 0}
+  enemyCounts: 030000000400000005000000
 --- !u!1001 &2071158450
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -143645,7 +143660,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!95 &2076057983
 Animator:
   serializedVersion: 7
@@ -143708,6 +143723,7 @@ MonoBehaviour:
   spawnPoint2: {fileID: 1948282463}
   waypointHolder1: {fileID: 1774807175}
   waypointHolder2: {fileID: 705693987}
+  enemyCounts: 030000000400000005000000
 --- !u!1001 &2076296486
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -146475,7 +146491,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!95 &2128058437
 Animator:
   serializedVersion: 7
@@ -146538,6 +146554,7 @@ MonoBehaviour:
   spawnPoint2: {fileID: 691314443}
   waypointHolder1: {fileID: 272361884}
   waypointHolder2: {fileID: 138902223}
+  enemyCounts: 030000000400000005000000
 --- !u!1001 &2128206638
 PrefabInstance:
   m_ObjectHideFlags: 0

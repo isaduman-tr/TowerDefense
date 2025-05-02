@@ -14,7 +14,7 @@ public class EnemyManager : MonoBehaviour
 
 
     private int currentEnemyType = 0; // Sýrasýyla hangi düþman türünün spawn edileceðini belirler
-    private int[] enemyCounts = { 3, 4, 5 }; // Her düþman türünden kaç tane spawn edileceðini belirten dizisi
+    public int[] enemyCounts = { 3, 4, 5 }; // Her düþman türünden kaç tane spawn edileceðini belirten dizisi
     private GameObject[] enemyPrefabs; // Tüm düþman prefablarýný içeren bir dizi
 
     private List<GameObject> currentEnemies = new List<GameObject>(); // Þu anki aktif düþmanlarý takip eden bir liste

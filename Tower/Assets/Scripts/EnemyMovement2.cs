@@ -17,13 +17,8 @@ public class EnemyMovement2 : MonoBehaviour
     private bool saldiriBasladi = false; // 🔥 kontrol için flag
     public Transform waypointHolder; // Bu düşmana özel waypoint objesi
 
-
-
     void Start()
     {
-        // WaypointHolder tag'lı objeyi bul
-       // GameObject waypointHolder = GameObject.FindGameObjectWithTag("WaypointHolder");
-
         if (waypointHolder != null)
         {
             int total = waypointHolder.transform.childCount;
