@@ -10,6 +10,10 @@ using UnityEngine.UI;
 
 public class PanelControl : MonoBehaviour
 {
+    public GameObject[] maps;       // Haritalarý sýrayla tutan dizi
+    private int currentIndex = 0;   // Þu anki aktif harita index'i
+
+    public static PanelControl Instance;
     public AudioMixer mixer;
     public Slider MusicSlider, SFXSlider;
     public GameObject settingsPanel;
@@ -38,7 +42,7 @@ public class PanelControl : MonoBehaviour
 
     public Slider slider;   // Baðlanacak Slider
     public GameObject battleButton;
-    private bool battle = false;
+    public bool battle = false;
     private float timer = 0f;
     public static int productionCount = 0;
     public TextMeshProUGUI productionText;
@@ -58,6 +62,7 @@ public class PanelControl : MonoBehaviour
     public Button tower2ButL, tower3ButL, tower4ButL;
     public Button tower2ButR, tower3ButR, tower4ButR;
     public Button tower2ButM, tower3ButM, tower4ButM;
+    public GameObject TowerPanelL, TowerPanelR, TowerPanelM;
     private bool grup1Aktif = true;
     private bool grup2Aktif = false;
     private bool grup3Aktif = false;
@@ -77,12 +82,21 @@ public class PanelControl : MonoBehaviour
     public static float totalHealth = 1.0f;
     public TextMeshProUGUI totalHealthText;
 
-    //public EnemyManager enemySpawn;
+    public GameObject gameOverPanel;
+    public GameObject congratsPanel;
     public KaleHealth KaleTotalHealth;
 
     public static int levelCount = 1;
     public GameObject[] levels; // Level1...Level13 objeleri buraya atanacak
 
+
+    public bool boolCatapult = false, boolTurret = false, boolCannon = false;
+
+
+    void Awake()
+    {
+        Instance = this;
+    }
     public void CallSpawnOnActiveLevel()
     {
         foreach (GameObject level in levels)
@@ -108,15 +122,105 @@ public class PanelControl : MonoBehaviour
     }
     private void Start()
     {
-        tower2ButL.interactable = false;
-        tower3ButL.interactable = false;
-        tower4ButL.interactable = false;
-        tower2ButR.interactable = false;
-        tower3ButR.interactable = false;
-        tower4ButR.interactable = false;
-        tower2ButM.interactable = false;
-        tower3ButM.interactable = false;
-        tower4ButM.interactable = false;
+        AssignTowerButtonsByTag(); // Butonlarý dinamik ata
+        StartScene();
+    }
+    private void Update()
+    {
+        if (battle == true) {Production();}
+        MusicSlider.onValueChanged.AddListener(SetMusicVolume);
+        SFXSlider.onValueChanged.AddListener(SetSFXVolume);
+        productionText.text = productionCount.ToString();
+        coinText.text = coinSayisi.ToString();
+        if (KaleHealth.Instance.health <= 0) // Kale saðlýðý sýfýr veya daha düþükse
+        {
+            gameOverPanel.SetActive(true);
+        }
+    }
+
+//menüleri açýp kapatma
+    public void ShowPanel(int index)
+    {
+        for (int i = 0; i < panels.Length; i++)
+        {
+            bool isActive = (i == index);
+            panels[i].SetActive(i == index); // Sadece seçilen panel aktif, diðerleri kapalý
+            if (isActive) panelButtons[i].transform.localScale = highlightedScale; // Butonu büyüt
+            else panelButtons[i].transform.localScale = defaultScale; // Eski haline getir
+        }
+    }   
+    public void ShowSettings()  {settingsPanel.SetActive(true); Time.timeScale = 0f; }                                                       
+    public void CloseSettings()  {settingsPanel.SetActive(false); Time.timeScale = 1f; }
+    public void CongratsPanelOC()
+    {
+        congratsPanel.SetActive(true);
+        battle=false;
+        mainFloorAnim = null;
+    }
+    public void NewMap()
+    {
+        congratsPanel.SetActive(false);
+        panels[2].SetActive(true);
+        buttonPanel.SetActive(true);
+        slider.gameObject.SetActive(false);
+        productionCount = 0;
+        battleButton.SetActive(true);
+        
+     
+        if (currentIndex < maps.Length)     // Þu anki haritayý kapat
+            maps[currentIndex].SetActive(false);
+        currentIndex++;      // Bir sonraki haritaya geç
+ 
+        if (currentIndex < maps.Length)      // Diziyi aþmadýysa yeni haritayý aç
+        {
+            maps[currentIndex].SetActive(true);
+        }
+        else
+        {
+            Debug.Log("Tüm haritalar bitti!");      // Ýstersen burada butonu pasifleþtirebilir veya bir final ekraný açabilirsin.
+        }
+        StartScene();
+
+    }
+    public void StartScene()
+    {
+        AssignTowerButtonsByTag(); // Butonlarý dinamik ata
+        CallSpawnOnActiveLevel();
+
+        if (tower2ButL != null) tower2ButL.interactable = false;
+        if (tower3ButL != null) tower3ButL.interactable = false;
+        if (tower4ButL != null) tower4ButL.interactable = false;
+        if (tower2ButR != null) tower2ButR.interactable = false;
+        if (tower3ButR != null) tower3ButR.interactable = false;
+        if (tower4ButR != null) tower4ButR.interactable = false;
+        if (tower2ButM != null) tower2ButM.interactable = false;
+        if (tower3ButM != null) tower3ButM.interactable = false;
+        if (tower4ButM != null) tower4ButM.interactable = false;
+
+        if (boolCatapult)
+        {
+            if (tower2ButL != null) tower2ButL.interactable = true;
+            if (tower2ButR != null) tower2ButR.interactable = true;
+            if (tower2ButM != null) tower2ButM.interactable = true;
+        }
+        if (boolTurret)
+        {
+            if (tower3ButL != null) tower3ButL.interactable = true;
+            if (tower3ButR != null) tower3ButR.interactable = true;
+            if (tower3ButM != null) tower3ButM.interactable = true;
+        }
+        if (boolCannon)
+        {
+            if (tower4ButL != null) tower4ButL.interactable = true;
+            if (tower4ButR != null) tower4ButR.interactable = true;
+            if (tower4ButM != null) tower4ButM.interactable = true;
+        }
+
+
+        if (TowerPanelL != null) TowerPanelL.SetActive(false);
+        if (TowerPanelR != null) TowerPanelR.SetActive(false);
+        if (TowerPanelM != null) TowerPanelM.SetActive(false);
+
         exitButton.gameObject.SetActive(false);
         productionCost.text = x.ToString();
         castleCost.text = y.ToString();
@@ -145,31 +249,8 @@ public class PanelControl : MonoBehaviour
         }
 
     }
-    private void Update()
-    {
-        if (battle == true) {Production();}
-        MusicSlider.onValueChanged.AddListener(SetMusicVolume);
-        SFXSlider.onValueChanged.AddListener(SetSFXVolume);
-        productionText.text = productionCount.ToString();
-        coinText.text = coinSayisi.ToString();
 
-    }
-
-//menüleri açýp kapatma
-    public void ShowPanel(int index)
-    {
-        for (int i = 0; i < panels.Length; i++)
-        {
-            bool isActive = (i == index);
-            panels[i].SetActive(i == index); // Sadece seçilen panel aktif, diðerleri kapalý
-            if (isActive) panelButtons[i].transform.localScale = highlightedScale; // Butonu büyüt
-            else panelButtons[i].transform.localScale = defaultScale; // Eski haline getir
-        }
-    }   
-    public void ShowSettings()  {settingsPanel.SetActive(true); Time.timeScale = 0f; }                                                       
-    public void CloseSettings()  {settingsPanel.SetActive(false); Time.timeScale = 1f; }
-
-//Kart Menüsü
+    //Kart Menüsü
     public void RandomCard()
     {
         if (cardSayisi >= 1)
@@ -262,6 +343,7 @@ public class PanelControl : MonoBehaviour
             tower2ButR.interactable = true;
             tower2ButM.interactable = true;
 
+            boolCatapult = true;
             coinSayisi -= tower2;
             coinText.text = coinSayisi.ToString();
         }
@@ -274,6 +356,8 @@ public class PanelControl : MonoBehaviour
             tower3ButL.interactable = true;
             tower3ButR.interactable = true;
             tower3ButM.interactable = true;
+
+            boolTurret = true;
             coinSayisi -= tower3;
             coinText.text = coinSayisi.ToString();
         }
@@ -286,6 +370,8 @@ public class PanelControl : MonoBehaviour
             tower4ButL.interactable = true;
             tower4ButR.interactable = true;
             tower4ButM.interactable = true;
+
+            boolCannon = true;  
             coinSayisi -= tower4;
             coinText.text = coinSayisi.ToString();
         }
@@ -332,7 +418,9 @@ public class PanelControl : MonoBehaviour
             Transform imageTransform = clickedObject.transform.Find($"Image{evolveCount - 1}"); 
             imageTransform.GetComponent<Image>().color = new Color(0.281f, 0.541f, 0.898f); // Rengi deðiþtir
 
-
+            boolCatapult= false;
+            boolTurret= false;
+            boolCannon= false;
             ChangeLevel(evolveCount);
         }
     }
@@ -401,8 +489,25 @@ public class PanelControl : MonoBehaviour
             }
         }
     }
+    private void AssignTowerButtonsByTag()
+    {
+        TowerPanelL = GameObject.FindGameObjectWithTag("TowerPanelL");
+        TowerPanelR = GameObject.FindGameObjectWithTag("TowerPanelR");
+        TowerPanelM = GameObject.FindGameObjectWithTag("TowerPanelM");
+        tower2ButL = GameObject.FindGameObjectWithTag("tower2ButL")?.GetComponent<Button>();
+        tower3ButL = GameObject.FindGameObjectWithTag("tower3ButL")?.GetComponent<Button>();
+        tower4ButL = GameObject.FindGameObjectWithTag("tower4ButL")?.GetComponent<Button>();
 
-//Savaþ alaný menüsü
+        tower2ButR = GameObject.FindGameObjectWithTag("tower2ButR")?.GetComponent<Button>();
+        tower3ButR = GameObject.FindGameObjectWithTag("tower3ButR")?.GetComponent<Button>();
+        tower4ButR = GameObject.FindGameObjectWithTag("tower4ButR")?.GetComponent<Button>();
+
+        tower2ButM = GameObject.FindGameObjectWithTag("tower2ButM")?.GetComponent<Button>();
+        tower3ButM = GameObject.FindGameObjectWithTag("tower3ButM")?.GetComponent<Button>();
+        tower4ButM = GameObject.FindGameObjectWithTag("tower4ButM")?.GetComponent<Button>();
+    }
+
+    //Savaþ alaný menüsü
     public void Production()
     {
         timer += Time.deltaTime*proTime; // Zaman ilerliyor
@@ -422,6 +527,7 @@ public class PanelControl : MonoBehaviour
         battle = true;
         battleButton.SetActive(false);
         slider.gameObject.SetActive(true);
+        productionCount = 0;
         panels[2].SetActive(false);
         buttonPanel.SetActive(false);
         //enemySpawn.Spawn();
@@ -567,4 +673,5 @@ public class PanelControl : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Time.timeScale = 1f;
     }
+    
 }

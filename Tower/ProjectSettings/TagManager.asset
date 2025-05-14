@@ -14,6 +14,18 @@ TagManager:
   - waitingPoint
   - Floor
   - WaypointHolder
+  - tower2ButR
+  - tower3ButR
+  - tower4ButR
+  - tower2ButL
+  - tower3ButL
+  - tower4ButL
+  - tower2ButM
+  - tower3ButM
+  - tower4ButM
+  - TowerPanelL
+  - TowerPanelR
+  - TowerPanelM
   layers:
   - Default
   - TransparentFX

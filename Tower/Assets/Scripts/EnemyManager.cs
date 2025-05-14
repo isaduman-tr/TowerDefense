@@ -11,13 +11,13 @@ public class EnemyManager : MonoBehaviour
     public Transform waypointHolder1;
     public Transform waypointHolder2;
 
-
-
     private int currentEnemyType = 0; // Sýrasýyla hangi düþman türünün spawn edileceðini belirler
     public int[] enemyCounts = { 3, 4, 5 }; // Her düþman türünden kaç tane spawn edileceðini belirten dizisi
     private GameObject[] enemyPrefabs; // Tüm düþman prefablarýný içeren bir dizi
 
     private List<GameObject> currentEnemies = new List<GameObject>(); // Þu anki aktif düþmanlarý takip eden bir liste
+
+
 
     void Start() // Unity'nin baþlangýç fonksiyonu
     {
@@ -26,7 +26,8 @@ public class EnemyManager : MonoBehaviour
     }
     public void SpawnEnemy()
     {
-         StartCoroutine(SpawnEnemies()); // Düþmanlarý spawn etmeye baþlar
+         if(PanelControl.Instance.battle) StartCoroutine(SpawnEnemies()); // Düþmanlarý spawn etmeye baþlar
+
     }
     IEnumerator SpawnEnemies() // Düþmanlarý sýrayla spawn eden bir coroutine
     {
@@ -35,6 +36,13 @@ public class EnemyManager : MonoBehaviour
         {
             yield return SpawnEnemyType(enemyPrefabs[currentEnemyType], enemyCounts[currentEnemyType]); // Belirli türde düþman spawn eder
             yield return new WaitUntil(() => currentEnemies.Count == 0); // Tüm düþmanlar yok edilene kadar bekler
+
+            if (currentEnemyType >= enemyPrefabs.Length - 1)
+            {
+                Debug.Log("Son düþman türü spawn ediliyor!");
+                PanelControl.Instance.CongratsPanelOC();
+            }
+
             currentEnemyType++; // Bir sonraki düþman türüne geçer
         }
     }

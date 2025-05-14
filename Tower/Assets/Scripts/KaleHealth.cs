@@ -2,8 +2,13 @@ using UnityEngine; // Unity motorunun ana sýnýflarýný kullanabilmek için gerekli
 
 public class KaleHealth : MonoBehaviour // MonoBehaviour sýnýfýndan türetilen bir KaleHealth sýnýfý tanýmlar
 {
+    public static KaleHealth Instance;
     public float health = 300; // Kaleye baþlangýç saðlýðý 300 olarak atanýr
 
+    void Awake()
+    {
+        Instance = this;
+    }
     public void KaleStart()
     {
         health = PanelControl.casHealth;
@@ -16,6 +21,7 @@ public class KaleHealth : MonoBehaviour // MonoBehaviour sýnýfýndan türetilen bi
         if (health <= 0) // Kale saðlýðý sýfýr veya daha düþükse
         {
             Destroy(gameObject); // Kale oyun nesnesini yok eder
+            
         }
     }
 }
